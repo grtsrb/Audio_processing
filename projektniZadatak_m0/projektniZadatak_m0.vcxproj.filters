@@ -18,9 +18,24 @@
     <ClCompile Include="WAVheader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tremolo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="processing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WAVheader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="processing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
