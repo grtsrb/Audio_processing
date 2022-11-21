@@ -3,6 +3,8 @@
 
 #include <math.h>
 #include "common.h"
+#include "tremolo.h"
+
 
 //void initGainProcessing(double preGainValue, double* defaultVariablesGain, double postGainValue);
 
