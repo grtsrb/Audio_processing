@@ -1,7 +1,7 @@
 #include "common.h"
 #include "processing.h"
 
-double saturation(double in, double threshold)
+/*double saturation(double in, double threshold)
 {
 	// Simple limiter since we know that pre-Gain adds 6dB
 	if (in > threshold)
@@ -14,7 +14,7 @@ double saturation(double in, double threshold)
 	}
 
 	return in;
-}
+}*/
 
 
 

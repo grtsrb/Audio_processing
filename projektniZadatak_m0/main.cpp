@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
 	int mode;
 	int OUTPUT_NUM_CHANNELS = 2;
 
-	if (argc < 3 || argc > 6 || argc == 4)
+	if (argc < 3 || argc > 6 || argc == 4 || argc == 5)
 	{
 		printf("Wrong input.\n");
 		printf("Command line arguments: \n");
@@ -62,6 +62,7 @@ int main(int argc, char* argv[])
 		OUTPUT_NUM_CHANNELS = 2;
 	} else
 	{
+		// Should I add if input_gain > 1 / 2
 		input_gainDB = atof(argv[3]);
 		input_gainDB = input_gainDB > 0 ? -6.0 : input_gainDB;
 		input_gain = pow(10.0, input_gainDB / 20.0);
