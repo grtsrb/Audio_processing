@@ -1,5 +1,6 @@
 
 #include <stdlib.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 #include "WAVheader.h"
@@ -7,25 +8,15 @@
 
 
 
-
-
-
-
-
 // IO Buffers
 static double sampleBuffer[MAX_NUM_CHANNEL][BLOCK_SIZE];
 
-// Processing related variables
-/*static double preGain;
-static double postGain;
-static double variablesGain[INPUT_NUM_CHANNELS];
-static double limiterThreshold = 0.999;*/
 
 
 
 /////////////////////////////////////////////////////////////////////////////////
-// @Author	<student name>
-// @Date		<date>  
+// @Author	Nikola Vlaskalin
+// @Date		21.11.2022. 
 //
 // Function:
 // main
@@ -35,7 +26,7 @@ static double limiterThreshold = 0.999;*/
 // @return - nothing
 // Comment: main routine of a program
 //
-// E-mail:	<email>
+// E-mail:	nikola.vlaskalin00@gmail.com
 //
 /////////////////////////////////////////////////////////////////////////////////
 int main(int argc, char* argv[])
@@ -45,7 +36,63 @@ int main(int argc, char* argv[])
 	char WavInputName[256];
 	char WavOutputName[256];
 	WAV_HEADER inputWAVhdr, outputWAVhdr;
-	//double defaultVariablesGain[INPUT_NUM_CHANNELS] = { MINUS_4DB , MINUS_2DB }; // -2dB, -4dB
+	double input_gain;
+	double input_gainDB;
+	double headroom_gain;
+	double headroom_gainDB;
+	int mode;
+	int OUTPUT_NUM_CHANNELS = 2;
+
+	if (argc < 3 || argc > 6 || argc == 4)
+	{
+		printf("Wrong input.\n");
+		printf("Command line arguments: \n");
+		printf("[Input file location] [Output file location] [Input Gain] [Headroom Gain] [Mode] \n");
+		printf("\n");
+		printf("a) Input gain -> Default = -6db Values: From 0 to  negative inf db \n");
+		printf("b) Headroom gain -> Default = -6db Values: From 0 to negative inf db \n");
+		printf("c) Mode: 0 -> OM2_0_0, 1 -> OM0_2_0, 2 -> OM3_2_0 \n");
+		return -1;
+	}
+	if (argc == 3)
+	{
+		input_gain = MINUS_6DB;
+		headroom_gain = MINUS_3DB;
+		mode = OM2_0_0;
+		OUTPUT_NUM_CHANNELS = 2;
+	} else
+	{
+		input_gainDB = atof(argv[3]);
+		input_gainDB = input_gainDB > 0 ? -6.0 : input_gainDB;
+		input_gain = pow(10.0, input_gainDB / 20.0);
+
+		headroom_gainDB = atof(argv[4]);
+		headroom_gainDB = headroom_gainDB > 0 ? -3.0 : headroom_gainDB;
+		headroom_gain = pow(10.0, headroom_gainDB / 20.0);
+
+		mode = atoi(argv[5]);
+
+		if (mode < 0 || mode > 3)
+		{
+			mode = OM2_0_0;
+			OUTPUT_NUM_CHANNELS = 2;
+		}
+
+		switch (mode)
+		{
+		case OM2_0_0:
+			OUTPUT_NUM_CHANNELS = 2;
+			break;
+		case  OM0_2_0:
+			OUTPUT_NUM_CHANNELS = 2;
+			break;
+		case OM3_2_0:
+			OUTPUT_NUM_CHANNELS = 5;
+			break;
+		default:
+			break;
+		}
+	}
 
 	// Init channel buffers
 	for (int i = 0; i < MAX_NUM_CHANNEL; i++)
@@ -58,11 +105,15 @@ int main(int argc, char* argv[])
 	strcpy(WavOutputName, argv[2]);
 	wav_out = OpenWavFileForRead(WavOutputName, "wb");
 	//-------------------------------------------------
-	
 	// Read input wav header
 	//-------------------------------------------------
 	ReadWavHeader(wav_in, inputWAVhdr);
 	//-------------------------------------------------
+
+
+
+	//Default values
+
 
 	// Set up output WAV header
 	//-------------------------------------------------	
@@ -82,7 +133,6 @@ int main(int argc, char* argv[])
 	//-------------------------------------------------
 	WriteWavHeader(wav_out, outputWAVhdr);
 
-	//initGainProcessing(PLUS_6DB, defaultVariablesGain, MINUS_12DB);
 
 	// Processing loop
 	//-------------------------------------------------	
@@ -106,13 +156,33 @@ int main(int argc, char* argv[])
 				}
 			}
 
-			gainProcessing(sampleBuffer, sampleBuffer);
+			gainProcessing(sampleBuffer, sampleBuffer, input_gain, headroom_gain, mode);
 
 			for (int j = 0; j < BLOCK_SIZE; j++)
 			{
 				for (int k = 0; k < outputWAVhdr.fmt.NumChannels; k++)
 				{
-					sample = sampleBuffer[k][j] * SAMPLE_SCALE;	// crude, non-rounding 			
+					int channel = 0;
+					switch (mode)
+					{
+					case OM2_0_0:
+						if (k == 0) channel = LEFT_CH;
+						if (k == 1) channel = RIGHT_CH;
+						break;
+					case OM0_2_0:
+						if (k == 0) channel = LEFTS_CH;
+						if (k == 1) channel = RIGHTS_CH;
+						break;
+					case OM3_2_0:
+						if (k == 0) channel = LEFT_CH;
+						if (k == 1) channel = RIGHT_CH;
+						if (k == 2) channel = CENTER_CH;
+						if (k == 3) channel = LEFTS_CH;
+						if (k == 4) channel = RIGHTS_CH;
+					default:
+						break;
+					}
+					sample = sampleBuffer[channel][j] * SAMPLE_SCALE;	// crude, non-rounding 			
 					sample = sample >> (32 - inputWAVhdr.fmt.BitsPerSample);
 					fwrite(&sample, outputWAVhdr.fmt.BitsPerSample / 8, 1, wav_out);
 				}

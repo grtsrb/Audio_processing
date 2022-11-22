@@ -10,7 +10,7 @@
 
 //double saturation(double in, double threshold);
 
-void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE]);
+void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE], double input_gain, double headroom_gain, int mode);
 
 
 

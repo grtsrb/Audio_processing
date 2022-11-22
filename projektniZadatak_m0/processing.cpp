@@ -1,17 +1,7 @@
 #include "common.h"
 #include "processing.h"
 
-/*void initGainProcessing(double preGainValue, double* defaultVariablesGain, double postGainValue)
-{
-	preGain = preGainValue;
-	for (int i = 0; i < INPUT_NUM_CHANNELS; i++)
-	{
-		variablesGain[i] = defaultVariablesGain[i];
-	}
-	postGain = postGainValue;
-}*/
-
-/*double saturation(double in, double threshold)
+double saturation(double in, double threshold)
 {
 	// Simple limiter since we know that pre-Gain adds 6dB
 	if (in > threshold)
@@ -24,12 +14,11 @@
 	}
 
 	return in;
-}*/
-
-// void processBlock(double* input, double* output, tremolo_struct_t* data, int numSamples);
+}
 
 
-void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE])
+
+void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE], double input_gain, double headroom_gain, int mode)
 {
 	double sum;
 	double pTemp[INPUT_NUM_CHANNELS][BLOCK_SIZE];
@@ -41,28 +30,43 @@ void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE])
 
 	for (int i = 0; i < BLOCK_SIZE; i++)
 	{	
+
 		// Multiply with -6db
-		pIn[LEFT_CH][i] *= MINUS_6DB;
-		pIn[RIGHT_CH][i] *= MINUS_6DB;
+		pIn[LEFT_CH][i] *= input_gain;
+		pIn[RIGHT_CH][i] *= input_gain;
 
 		pTemp[LEFT_CH][i] = pIn[LEFT_CH][i];
 		pTemp[RIGHT_CH][i] = pIn[RIGHT_CH][i];
 
-		// Sum of left and right channel and multiply the sum with 3db
-		sum = (pIn[LEFT_CH][i] + pIn[RIGHT_CH][i]) * MINUS_3DB;
-		
+		if (mode != OM0_2_0)
+		{
+			// Sum of left and right channel and multiply the sum with -3db
+			sum = (pIn[LEFT_CH][i] + pIn[RIGHT_CH][i]) * headroom_gain;
 
-		// Output for left, right and center channel
-		pOut[LEFT_CH][i] = sum * MINUS_6DB;
-		pOut[RIGHT_CH][i] = sum * MINUS_6DB;
-		pOut[CENTER_CH][i] = sum;
+			// Output for left, right and center channel
+
+			pOut[LEFT_CH][i] = sum * MINUS_6DB;
+			pOut[RIGHT_CH][i] = sum * MINUS_6DB;
+		}
+
+		if (mode == OM3_2_0)
+		{
+			pOut[CENTER_CH][i] = sum;
+		}
 	}
 
-	processBlock(*pTemp, *pTemp, tremolo_ptr, BLOCK_SIZE);
+	// Tremolo processing for Ls and Rs
+	// void processBlock(double* input, double* output, tremolo_struct_t* data, int numSamples);
 
-	for (int i = 0; i < BLOCK_SIZE; i++)
+	if (mode != OM2_0_0)
 	{
-		pOut[LEFTS_CH][i] = pTemp[LEFT_CH][i] * MINUS_2DB;
-		pOut[RIGHTS_CH][i] = pTemp[RIGHT_CH][i] * MINUS_2DB;
+
+		processBlock(*pTemp, *pTemp, tremolo_ptr, BLOCK_SIZE);
+
+		for (int i = 0; i < BLOCK_SIZE; i++)
+		{
+			pOut[LEFTS_CH][i] = pTemp[LEFT_CH][i] * MINUS_2DB;
+			pOut[RIGHTS_CH][i] = pTemp[RIGHT_CH][i] * MINUS_2DB;
+		}
 	}
 }
