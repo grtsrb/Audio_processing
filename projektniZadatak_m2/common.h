@@ -1,3 +1,4 @@
+#include "stdfix_emu.h"
 #ifndef COMMON_H
 #define COMMON_H
 
@@ -34,5 +35,15 @@ enum OUTPUT_MODES
 	OM3_2_0 = 2, // L & R & C & Ls & Rs
 };
 
+/* DSP integer */
+typedef short DSPshort;
+/* DSP unsigned integer */
+typedef unsigned DPushort;
+/* native integer */
+typedef int DSPint;
+/* DSP fixed-point fractional */
+typedef fract DSPfract;
+/* DSP fixed-point fractional */
+typedef long_accum DSPaccum;
 
 #endif // !COMMON_H

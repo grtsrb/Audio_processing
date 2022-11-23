@@ -13,8 +13,8 @@
 
 
 
-void initialize(double input_gain_func, double headroom_gain_func, int mode_func);
-void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE]);
+void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
+void gainProcessing(DSPfract pIn[][BLOCK_SIZE], DSPfract pOut[][BLOCK_SIZE]);
 
 
 

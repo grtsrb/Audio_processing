@@ -7,18 +7,18 @@ void init(tremolo_struct_t * data)
 {
 
 	// Set default values:
-	data->LFO_frequency = 2.0;
-	data->depth = 1.0;
+	data->LFO_frequency = FRACT_NUM(2.0);
+	data->depth = FRACT_NUM(1.0);
 	data->waveform = kWaveformSine;
-	data->lfoPhase = 0.0;
-	data->inverseSampleRate = 1.0 / SAMPLE_RATE;
+	data->lfoPhase = FRACT_NUM(0.0);
+	data->inverseSampleRate = FRACT_NUM(1.0 / SAMPLE_RATE);
 }
 
 
-void processBlock(double* input, double* output, tremolo_struct_t* data)
+void processBlock(DSPfract* input, DSPfract* output, tremolo_struct_t* data)
 {
 
-	double ph;
+	DSPfract ph;
 
 
 	// Make a temporary copy of any state variables which need to be
@@ -34,23 +34,23 @@ void processBlock(double* input, double* output, tremolo_struct_t* data)
 	ph = data->lfoPhase;
 
 
-	for (int i = 0; i < BLOCK_SIZE; ++i)
+	for (DSPint i = 0; i < BLOCK_SIZE; ++i)
 
 	{
 
-		const double in = *input;
+		const DSPfract in = *input;
 
 		// Ring modulation is easy! Just multiply the waveform by a periodic carrier
 
-		*output = in * (1.0 - data->depth*lfo(ph, data->waveform));
+		*output = in * (FRACT_NUM(1.0) - data->depth*lfo(ph, data->waveform));
 
 		// Update the carrier and LFO phases, keeping them in the range 0-1
-
+		
 		ph += data->LFO_frequency*data->inverseSampleRate;
 
-		if (ph >= 1.0)
+		if (ph >= FRACT_NUM(1.0))
 
-			ph -= 1.0;
+			ph -= FRACT_NUM(1.0);
 		input++;
 		output++;
 	}
@@ -70,7 +70,7 @@ void processBlock(double* input, double* output, tremolo_struct_t* data)
 
 
 
-double lfo(double phase, wave_forms_t waveform)
+DSPfract lfo(DSPfract phase, wave_forms_t waveform)
 
 {
 
@@ -80,23 +80,23 @@ double lfo(double phase, wave_forms_t waveform)
 
 	case kWaveformTriangle:
 
-		if (phase < 0.25)
+		if (phase < FRACT_NUM(0.25))
 
-			return 0.5 + 2.0*phase;
+			return FRACT_NUM(0.5) + (fract)((long)2 * phase);
 
-		else if (phase < 0.75)
+		else if (phase < FRACT_NUM(0.75))
 
-			return 1.0 - 2.0*(phase - 0.25);
+			return FRACT_NUM(1.0) - (fract)((long)2 * (phase - FRACT_NUM(0.25)));
 
 		else
 
-			return 2.0*(phase - 0.75);
+			return 2.0f * (phase - FRACT_NUM(0.75));
 
 	case kWaveformSine:
 
 	default:
 
-		return 0.5 + 0.5*sin(2.0 * PI * phase);
+		return FRACT_NUM(0.5) + FRACT_NUM(0.5)* FRACT_NUM(sin(2.0 * PI * phase));
 
 	}
 

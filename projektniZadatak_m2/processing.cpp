@@ -15,14 +15,14 @@
 
 	return in;
 }*/
-static double tremoloBuffer[TREMOLO_NUM_CHANNELS][BLOCK_SIZE];
-double input_gain;
-double headroom_gain;
-int mode;
+static DSPfract tremoloBuffer[TREMOLO_NUM_CHANNELS][BLOCK_SIZE];
+DSPfract input_gain = fract(0);
+DSPfract headroom_gain = fract(0);
+DSPint mode;
 tremolo_struct_t tremolo;
 tremolo_struct_t* tremolo_ptr = &tremolo;
 
-void initialize(double input_gain_func, double headroom_gain_func, int mode_func) 
+void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func)
 {
 	input_gain = input_gain_func;
 	headroom_gain = headroom_gain_func;
@@ -30,30 +30,30 @@ void initialize(double input_gain_func, double headroom_gain_func, int mode_func
 }
 
 
-void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE])
+void gainProcessing(DSPfract pIn[][BLOCK_SIZE], DSPfract pOut[][BLOCK_SIZE])
 {
-	double sum;
+	DSPfract sum;
 
 	init(tremolo_ptr);
 
-	double* p_in_left = *(pIn + LEFT_CH);
-	double* p_in_right = *(pIn + RIGHT_CH);
+	DSPfract* p_in_left = *(pIn + LEFT_CH);
+	DSPfract* p_in_right = *(pIn + RIGHT_CH);
 
-	double* p_in_tempL = *(tremoloBuffer + LEFT_CH);
-	double* p_in_tempR = *(tremoloBuffer + RIGHT_CH);
+	DSPfract* p_in_tempL = *(tremoloBuffer + LEFT_CH);
+	DSPfract* p_in_tempR = *(tremoloBuffer + RIGHT_CH);
 
-	double* p_out_left = *(pOut + LEFT_CH);
-	double* p_out_right = *(pOut + RIGHT_CH);
-	double* p_out_center = *(pOut + CENTER_CH);
-	double* p_out_LS = *(pOut + LEFTS_CH);
-	double* p_out_RS = *(pOut + RIGHTS_CH);
+	DSPfract* p_out_left = *(pOut + LEFT_CH);
+	DSPfract* p_out_right = *(pOut + RIGHT_CH);
+	DSPfract* p_out_center = *(pOut + CENTER_CH);
+	DSPfract* p_out_LS = *(pOut + LEFTS_CH);
+	DSPfract* p_out_RS = *(pOut + RIGHTS_CH);
 
-	for (int i = 0; i < BLOCK_SIZE; i++)
+	for (DSPint i = 0; i < BLOCK_SIZE; i++)
 	{	
 
 		// Multiply with -6db
-		*p_in_left *= input_gain;
-		*p_in_right *= input_gain;
+		*p_in_left = *p_in_left * input_gain;
+		*p_in_right = *p_in_right * input_gain;
 
 		*p_in_tempL = *p_in_left;
 		*p_in_tempR = *p_in_right;
@@ -65,8 +65,8 @@ void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE])
 
 			// Output for left, right and center channel
 
-			*p_out_left = sum * MINUS_6DB;
-			*p_out_right = sum * MINUS_6DB;
+			*p_out_left = sum * fract(MINUS_6DB);
+			*p_out_right = sum * fract(MINUS_6DB);
 		}
 
 		if (mode == OM3_2_0)
@@ -97,8 +97,8 @@ void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE])
 
 		for (int i = 0; i < BLOCK_SIZE; i++)
 		{
-			*p_out_LS = *p_in_tempL * MINUS_2DB;
-			*p_out_RS = *p_in_tempR * MINUS_2DB;
+			*p_out_LS = *p_in_tempL * fract(MINUS_2DB);
+			*p_out_RS = *p_in_tempR * fract(MINUS_2DB);
 
 
 			p_in_tempL++;
