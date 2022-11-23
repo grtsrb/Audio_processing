@@ -97,8 +97,8 @@ void gainProcessing(DSPfract pIn[][BLOCK_SIZE], DSPfract pOut[][BLOCK_SIZE])
 
 		for (int i = 0; i < BLOCK_SIZE; i++)
 		{
-			*p_out_LS = *p_in_tempL * FRACT_NUM(MINUS_2DB);
-			*p_out_RS = *p_in_tempR * FRACT_NUM(MINUS_2DB);
+			*p_out_LS = *p_in_tempL * fract(MINUS_2DB);
+			*p_out_RS = *p_in_tempR * fract(MINUS_2DB);
 
 
 			p_in_tempL++;
