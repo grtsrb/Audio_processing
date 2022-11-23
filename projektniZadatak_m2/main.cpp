@@ -150,6 +150,10 @@ int main(int argc, char* argv[])
 					sampleBuffer[k][j] = fract(value);			// scale sample to 1.0/-1.0 range		
 				}
 			}
+			if (i >= 13)
+			{
+				int a = 0;
+			}
 
 			gainProcessing(sampleBuffer, sampleBuffer);
 
