@@ -46,15 +46,9 @@ void processBlock(DSPfract* input, DSPfract* output, tremolo_struct_t* data)
 
 		// Update the carrier and LFO phases, keeping them in the range 0-1
 		
-<<<<<<< HEAD
-		// Error -> try shifting
-		DSPfract sampleRescale = data->LFO_frequency * data->inverseSampleRate;
-		sampleRescale = sampleRescale << 1;
-		ph += sampleRescale;
-=======
-		ph += data->LFO_frequency*data->inverseSampleRate;
->>>>>>> a7ce8700eeffc298bdd407955eeaf677cbdf755a
-
+		DSPfract rescaledSample =  data->LFO_frequency*data->inverseSampleRate;
+		rescaledSample = rescaledSample << 1;
+		ph += rescaledSample;
 		if (ph >= FRACT_NUM(1.0))
 
 			ph -= FRACT_NUM(1.0);
@@ -103,11 +97,7 @@ DSPfract lfo(DSPfract phase, wave_forms_t waveform)
 
 	default:
 
-<<<<<<< HEAD
-		return FRACT_NUM(0.5) + FRACT_NUM(0.5)* FRACT_NUM(sin(2.0 * PI * phase.toDouble()));
-=======
-		return FRACT_NUM(0.5) + FRACT_NUM(0.5)* FRACT_NUM(sin(2.0 * PI * phase));
->>>>>>> a7ce8700eeffc298bdd407955eeaf677cbdf755a
+		return FRACT_NUM(0.5) + FRACT_NUM(0.5) * FRACT_NUM(sin(2 * PI * phase.toDouble()));
 
 	}
 
