@@ -15,7 +15,7 @@
 
 	return in;
 }*/
-
+static double tremoloBuffer[TREMOLO_NUM_CHANNELS][BLOCK_SIZE];
 double input_gain;
 double headroom_gain;
 int mode;
@@ -33,16 +33,14 @@ void initialize(double input_gain_func, double headroom_gain_func, int mode_func
 void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE])
 {
 	double sum;
-	double pTemp[INPUT_NUM_CHANNELS][BLOCK_SIZE];
-
 
 	init(tremolo_ptr);
 
 	double* p_in_left = *(pIn + LEFT_CH);
 	double* p_in_right = *(pIn + RIGHT_CH);
 
-	double* p_in_tempL = *(pIn + LEFT_CH);
-	double* p_in_tempR = *(pIn + RIGHT_CH);
+	double* p_in_tempL = *(tremoloBuffer + LEFT_CH);
+	double* p_in_tempR = *(tremoloBuffer + RIGHT_CH);
 
 	double* p_out_left = *(pOut + LEFT_CH);
 	double* p_out_right = *(pOut + RIGHT_CH);
@@ -89,8 +87,13 @@ void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE])
 
 	if (mode != OM2_0_0)
 	{
+		p_in_tempL = *(tremoloBuffer + LEFT_CH);
+		p_in_tempR = *(tremoloBuffer + RIGHT_CH);
 
-		processBlock(*pTemp, *pTemp, tremolo_ptr, BLOCK_SIZE);
+		processBlock(p_in_tempL, p_in_tempL, tremolo_ptr);
+		init(tremolo_ptr);
+		processBlock(p_in_tempR, p_in_tempR, tremolo_ptr);
+
 
 		for (int i = 0; i < BLOCK_SIZE; i++)
 		{

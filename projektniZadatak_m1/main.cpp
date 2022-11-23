@@ -37,12 +37,13 @@ int main(int argc, char* argv[])
 	char WavInputName[256];
 	char WavOutputName[256];
 	WAV_HEADER inputWAVhdr, outputWAVhdr;
+	// TO DO: Check if I should use global variables from processing.
 	double input_gain;
 	double input_gainDB;
 	double headroom_gain;
 	double headroom_gainDB;
 	int mode;
-	int OUTPUT_NUM_CHANNELS = 2;
+	int OUTPUT_NUM_CHANNELS;
 
 	if (argc < 3 || argc > 6 || argc == 4 || argc == 5)
 	{
@@ -63,7 +64,7 @@ int main(int argc, char* argv[])
 		OUTPUT_NUM_CHANNELS = 2;
 	} else
 	{
-		// Should I add if input_gain > 1 / 2
+		//TO DO: Should I add if input_gain > 1 / 2
 		input_gainDB = atof(argv[3]);
 		input_gainDB = input_gainDB > 0 ? -6.0 : input_gainDB;
 		input_gain = pow(10.0, input_gainDB / 20.0);

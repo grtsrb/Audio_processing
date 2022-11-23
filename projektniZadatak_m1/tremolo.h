@@ -26,7 +26,7 @@ typedef struct {
 } tremolo_struct_t;
 
 void init(tremolo_struct_t* data);
-void processBlock(double* input, double* output, tremolo_struct_t* data, int numSamples);
+void processBlock(double* input, double* output, tremolo_struct_t* data);
 double lfo(double phase, wave_forms_t waveform);
 
 

@@ -15,7 +15,7 @@ void init(tremolo_struct_t * data)
 }
 
 
-void processBlock(double* input, double* output, tremolo_struct_t* data, int numSamples)
+void processBlock(double* input, double* output, tremolo_struct_t* data)
 {
 
 	double ph;
@@ -29,21 +29,20 @@ void processBlock(double* input, double* output, tremolo_struct_t* data, int num
 
 	// the next channel.
 
-
+	//EDIT: Added pointers.
 
 	ph = data->lfoPhase;
 
 
-
-	for (int i = 0; i < numSamples; ++i)
+	for (int i = 0; i < BLOCK_SIZE; ++i)
 
 	{
 
-		const double in = input[i];
+		const double in = *input;
 
 		// Ring modulation is easy! Just multiply the waveform by a periodic carrier
 
-		output[i] = in * (1.0 - data->depth*lfo(ph, data->waveform));
+		*output = in * (1.0 - data->depth*lfo(ph, data->waveform));
 
 		// Update the carrier and LFO phases, keeping them in the range 0-1
 
@@ -52,7 +51,8 @@ void processBlock(double* input, double* output, tremolo_struct_t* data, int num
 		if (ph >= 1.0)
 
 			ph -= 1.0;
-
+		input++;
+		output++;
 	}
 
 

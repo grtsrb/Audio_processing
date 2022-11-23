@@ -5,6 +5,9 @@
 #define MAX_NUM_CHANNEL 8
 
 #define INPUT_NUM_CHANNELS 2
+// Defined tremolo num channels
+#define TREMOLO_NUM_CHANNELS 2
+
 
 
 #define LEFT_CH 0
@@ -21,7 +24,7 @@
 #define SAMPLE_RATE 48000
 #define PI 3.14159265358979323846
 
-static double limiterThreshold = 0.999;
+#define limiterThreshold = 0.999;
 
 
 enum OUTPUT_MODES
