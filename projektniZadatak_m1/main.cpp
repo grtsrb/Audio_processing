@@ -135,6 +135,7 @@ int main(int argc, char* argv[])
 	// Write output WAV header to file
 	//-------------------------------------------------
 	WriteWavHeader(wav_out, outputWAVhdr);
+	// Added initialize function for values.
 	initialize(input_gain, headroom_gain, mode);
 
 	// Processing loop
