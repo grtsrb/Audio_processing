@@ -1,0 +1,37 @@
+_GAINPROC_ASM
+	.if defined (_GAINPROC_ASM)
+	
+_BLOCK_SIZE .equ 16
+_INPUTNUM_CH .equ 2
+_LEFT_CH .equ 0
+_RIGHT_CH .equ 1
+_CENTER_CH .equ 2
+_LS_CH .equ 3
+_RS_CH .equ 4
+
+	.public _gainProcessing
+	.public _initialize
+	.extern _headroom_gain
+	.extern _input_gain
+	.extern _OUTPUT_GAIN6
+	.extern _OUTPUT_GAIN2
+	.extern _mode
+	.extern _tremolo_ptr
+	.extern _init	# tremolo function
+	.extern _processBlock # tremolo function
+
+
+	.code_ovly
+
+_initialize:
+
+
+	ret
+_gainProcessing:
+
+
+
+
+	ret
+	
+	.endif

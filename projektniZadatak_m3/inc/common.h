@@ -47,6 +47,7 @@
 
 #define limiterThreshold = 0.999;
 
+#define GAINPROC_ASM
 
 enum OUTPUT_MODES
 {

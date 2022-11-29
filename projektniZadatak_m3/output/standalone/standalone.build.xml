@@ -7,6 +7,7 @@
 			<arg value="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/output/standalone/src/main.O"/>
 			<arg value="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/output/standalone/src/processing.O"/>
 			<arg value="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/output/standalone/src/tremolo.O"/>
+			<arg value="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/output/standalone/src/gainProc.O"/>
 			<arg value="--output_type=RAM"/>
 			<arg value="--overlay_type=standalone"/>
 			<arg value="-lC:/CirrusDSP/lib/"/>

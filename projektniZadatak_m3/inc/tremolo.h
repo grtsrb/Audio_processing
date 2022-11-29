@@ -24,9 +24,8 @@ typedef struct {
 
 	DSPfract inverseSampleRate;
 } tremolo_struct_t;
-
-void init(tremolo_struct_t* data);
-void processBlock(DSPfract* input, DSPfract* output, tremolo_struct_t* data);
+void init(__memY tremolo_struct_t* data);
+void processBlock(__memY DSPfract* input, __memY DSPfract* output, __memY tremolo_struct_t* data);
 DSPfract lfo(DSPfract phase, wave_forms_t waveform);
 
 

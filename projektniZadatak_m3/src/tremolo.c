@@ -1,9 +1,6 @@
 #include "tremolo.h"
 
-
-
-
-void init(tremolo_struct_t * data)
+void init(__memY tremolo_struct_t * data)
 {
 
 	// Set default values:
@@ -15,56 +12,56 @@ void init(tremolo_struct_t * data)
 }
 
 
-void processBlock(DSPfract* input, DSPfract* output, tremolo_struct_t* data)
+void processBlock(__memY DSPfract* input,__memY DSPfract* output,__memY tremolo_struct_t* data)
 {
 
 	DSPfract ph;
-	DSPint i;
-	DSPfract rescaledSample;
 
-	// Make a temporary copy of any state variables which need to be
-
-	// maintained between calls to processBlock(). Each channel needs to be processed identically
-
-	// which means that the activity of processing one channel can't affect the state variable for
-
-	// the next channel.
-
-	//EDIT: Added pointers.
-
-	ph = data->lfoPhase;
+		DSPint i;
 
 
-	for (i = 0; i < BLOCK_SIZE; ++i)
+		// Make a temporary copy of any state variables which need to be
 
-	{
+		// maintained between calls to processBlock(). Each channel needs to be processed identically
 
-		const DSPfract in = *input;
+		// which means that the activity of processing one channel can't affect the state variable for
 
-		// Ring modulation is easy! Just multiply the waveform by a periodic carrier
+		// the next channel.
 
-		*output = in * (FRACT_NUM(1.0) - data->depth*lfo(ph, data->waveform));
-
-		// Update the carrier and LFO phases, keeping them in the range 0-1
-		
-		rescaledSample =  data->LFO_frequency*data->inverseSampleRate;
-		rescaledSample = rescaledSample << 1;
-		ph += rescaledSample;
-		if (ph >= FRACT_NUM(1.0))
-
-			ph -= FRACT_NUM(1.0);
-		input++;
-		output++;
-	}
+		DSPfract rescaledSample;
+		ph = data->lfoPhase;
 
 
-	// Having made a local copy of the state variables for each channel, now transfer the result
+			for (i = 0; i < BLOCK_SIZE; ++i)
 
-	// back to the main state variable so they will be preserved for the next call of processBlock()
+			{
+
+				const DSPfract in = *input;
+
+				// Ring modulation is easy! Just multiply the waveform by a periodic carrier
+
+				*output = in * (FRACT_NUM(1.0) - data->depth*lfo(ph, data->waveform));
+
+				// Update the carrier and LFO phases, keeping them in the range 0-1
+
+				rescaledSample  =  data->LFO_frequency*data->inverseSampleRate;
+				rescaledSample = rescaledSample << 1;
+				ph += rescaledSample;
+				if (ph >= FRACT_NUM(1.0))
+
+					ph -= FRACT_NUM(1.0);
+				input++;
+				output++;
+			}
+
+
+			// Having made a local copy of the state variables for each channel, now transfer the result
+
+			// back to the main state variable so they will be preserved for the next call of processBlock()
 
 
 
-	data->lfoPhase = ph;
+			data->lfoPhase = ph;
 
 }
 

@@ -106,6 +106,12 @@
                 <isExcluded>false</isExcluded>
                 <outputFolder>output</outputFolder>
             </objectFile>
+            <objectFile isExported="false" isAdditional="false">
+                <objectFilePath>src/gainProc.O</objectFilePath>
+                <containingProject>projektniZadatak_m3</containingProject>
+                <isExcluded>false</isExcluded>
+                <outputFolder>output</outputFolder>
+            </objectFile>
         </objectFiles>
         <core>DSP_A</core>
     </ns2:overlay_settings>

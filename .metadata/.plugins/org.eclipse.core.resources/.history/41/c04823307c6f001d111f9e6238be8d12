@@ -1,0 +1,88 @@
+_GAINPROC_ASM
+	.if defined (_GAINPROC_ASM)
+	
+_BLOCK_SIZE .equ 16
+_INPUT_NUM_CHANNELS .equ 2
+_LEFT_CH .equ 0
+_RIGHT_CH .equ 1
+_CENTER_CH .equ 2
+_LS_CH .equ 3
+_RS_CH .equ 4
+
+	.public _gainProcessing
+	.public _initialize
+	.extern _headroom_gain
+	.extern _input_gain
+	.extern _OUTPUT_GAIN6
+	.extern _OUTPUT_GAIN2
+	.extern _mode
+	.extern _tremolo_ptr
+	.extern _init	# tremolo function
+	.extern _processBlock # tremolo function
+
+
+	.code_ovly
+
+_initialize:
+# void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
+	
+	# a0 = input_gain_func
+	# a1 = headroom_gain_func
+	# b0 = mode_func
+	
+	
+	xmem[_input_gain] = a0
+
+	xmem[_headroom_gain] = a1
+	
+	xmem[_mode] = b0
+	ret
+_gainProcessing:
+	# void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE], __memY DSPfract pOut[][BLOCK_SIZE]);
+	# i0 = pIn
+	# i1 = pOut
+	
+	i4 = i0
+	i0 = ymem[_tremolo_ptr]		# init(tremolo_ptr)
+	nop
+	call(_init)
+	i0 = i4
+	
+	i4 =i0 + (_RIGHT_CH * _BLOCK_SIZE)
+		
+	do(_BLOCK_SIZE),>loop
+		x0 = ymem[i0]
+		y0 = xmem[_input_gain]
+		a0 = x0 * y0
+		ymem[i7] = a0; i7+=1
+		
+		x0 = ymem[i4]
+		a0 = x0 * y0
+		ymem[i7] = a0
+		
+		a0 = xmem[_mode]
+		a1 = (1)
+		a0 - a1
+		if (a != 0) jmp>ifOM3
+			a0 = ymem[i7]; i7-=1
+			a1 = ymem[i7]; 
+			
+			a0 = a0 + a1
+			
+			x0 = a0
+			y0 = xmem[_headroom_gain]
+			
+					
+#%ifOM3:
+		
+	
+
+%loop:
+	
+
+	
+
+
+	ret
+	
+	.endif

@@ -1,0 +1,5 @@
+#_TREMOLO_ASM
+	#.if defined (_TREMOLO_ASM)
+	
+	#.public _init
+	#.public 

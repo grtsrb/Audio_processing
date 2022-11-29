@@ -1,0 +1,31 @@
+_GAINPROC_ASM
+	.if defined (_GAINPROC_ASM)
+	
+_BLOCK_SIZE .equ 16
+_INPUTNUM_CH .equ 2
+_LEFT_CH .equ 0
+_RIGHT_CH .equ 1
+_CENTER_CH .equ 2
+_LS_CH .equ 3
+_RS_CH .equ 4
+
+	.public gainProcessing
+	.extern _headRoom
+	.extern _inputGain
+	.extern _outputGain6
+	.extern _outputGain2
+	.extern _mode
+	.extern _init
+	.extern _processBlock
+
+
+	.code_ovly
+
+_gainProcessing:
+
+
+
+
+	ret
+	
+	.endif
