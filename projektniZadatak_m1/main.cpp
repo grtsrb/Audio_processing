@@ -43,9 +43,10 @@ int main(int argc, char* argv[])
 	double headroom_gain;
 	double headroom_gainDB;
 	int mode;
+	int enable;
 	int OUTPUT_NUM_CHANNELS;
 
-	if (argc < 3 || argc > 6 || argc == 4 || argc == 5)
+	if (argc < 3 || argc > 7)
 	{
 		printf("Wrong input.\n");
 		printf("Command line arguments: \n");
@@ -61,6 +62,7 @@ int main(int argc, char* argv[])
 		input_gain = MINUS_6DB;
 		headroom_gain = MINUS_3DB;
 		mode = OM2_0_0;
+		enable = ON;
 		OUTPUT_NUM_CHANNELS = 2;
 	} else
 	{
@@ -74,6 +76,7 @@ int main(int argc, char* argv[])
 		headroom_gain = pow(10.0, headroom_gainDB / 20.0);
 
 		mode = atoi(argv[5]);
+		enable = atoi(argv[6]);
 
 		if (mode < 0 || mode > 3)
 		{
@@ -159,8 +162,10 @@ int main(int argc, char* argv[])
 					sampleBuffer[k][j] = sample / SAMPLE_SCALE;				// scale sample to 1.0/-1.0 range		
 				}
 			}
-
-			gainProcessing(sampleBuffer, sampleBuffer);
+			if (enable == ON)
+			{
+				gainProcessing(sampleBuffer, sampleBuffer);
+			}
 
 			for (int j = 0; j < BLOCK_SIZE; j++)
 			{

@@ -39,11 +39,11 @@ def get_inputs():
 def get_params():
     
     params = [
-        [-1, -3, -6],					# input gain
-        [-3, -5, -3],  				# headroom_gain
-        [0, 1, 2]	# mode 
-    ]
-
+        [-6, -2],					# input gain
+        [-3, -5],  				    # headroom gain
+        [0, 1],	                    # mode
+        [1, 0],                      # enable
+    ]               
     return params
 
 ################################################################################

@@ -5,10 +5,6 @@
 #include "common.h"
 #include "processing.h"
 __memY DSPfract sampleBuffer[MAX_NUM_CHANNEL][BLOCK_SIZE];
-__memY tremolo_struct_t tremoloL;
-__memY tremolo_struct_t tremoloR;
-
-
 int main(int argc, char *argv[])
  {
     WAVREAD_HANDLE *wav_in;
@@ -28,7 +24,7 @@ int main(int argc, char *argv[])
 	DSPint OUTPUT_NUM_CHANNELS;
     DSPint i;
     DSPint j;
-	mode = OM0_2_0;
+	mode = OM2_0_0;
 	input_gain = MINUS_6DB;
 	headroom_gain = MINUS_3DB;
 	OUTPUT_NUM_CHANNELS = 2;
@@ -104,8 +100,8 @@ int main(int argc, char *argv[])
 			}
 
 			// pozvati processing funkciju ovde
-			init(&tremoloL);
-			init(&tremoloR);
+			// init(&tremoloL);
+			// init(&tremoloR);
 			gainProcessing(sampleBuffer, sampleBuffer);
 
 			for(j=0; j<BLOCK_SIZE; j++)

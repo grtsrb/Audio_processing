@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<settings built="true" last_build_time="1669817168420">
+<settings built="true" last_build_time="1669839538561">
 	<dependencies>
-		<source_file last_build_time="1669817166791" path="src/gainProc.a"/>
-		<source_file last_build_time="1669809969772" path="src/tremolo.c">
+		<source_file last_build_time="1669839536890" path="src/gainProc.a"/>
+		<source_file last_build_time="1669839535243" path="src/tremolo.c">
 			<dependency>../inc/tremolo.h</dependency>
 			<dependency>../../../../../../CirrusDSP/include/dsplib/dsp_math.h</dependency>
 			<dependency>../../../../../../CirrusDSP/include/dsplib/dsp_types.h</dependency>
@@ -11,7 +11,7 @@
 			<dependency>../../../../../../CirrusDSP/include/scaling_coeff.h</dependency>
 			<dependency>../inc/stdfix_emu.h</dependency>
 		</source_file>
-		<source_file last_build_time="1669809755577" path="src/main.c">
+		<source_file last_build_time="1669839536379" path="src/main.c">
 			<dependency>../../../../../../CirrusDSP/include/stdio.h</dependency>
 			<dependency>../../../../../../CirrusDSP/include/dsplib/wavefile.h</dependency>
 			<dependency>../../../../../../CirrusDSP/include/stdfix.h</dependency>
@@ -25,7 +25,7 @@
 			<dependency>../../../../../../CirrusDSP/include/dsplib/dsp_math.h</dependency>
 			<dependency>../../../../../../CirrusDSP/include/dsplib/dsp_types.h</dependency>
 		</source_file>
-		<source_file last_build_time="1669769540212" path="src/processing.c">
+		<source_file last_build_time="1669839535814" path="src/processing.c">
 			<dependency>../inc/processing.h</dependency>
 			<dependency>../../../../../../CirrusDSP/include/math.h</dependency>
 			<dependency>../inc/common.h</dependency>

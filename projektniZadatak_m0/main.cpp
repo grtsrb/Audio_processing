@@ -41,17 +41,19 @@ int main(int argc, char* argv[])
 	double headroom_gain;
 	double headroom_gainDB;
 	int mode;
+	int enable;
 	int OUTPUT_NUM_CHANNELS = 2;
 
-	if (argc < 3 || argc > 6 || argc == 4 || argc == 5)
+	if (argc < 3 || argc > 7)
 	{
 		printf("Wrong input.\n");
 		printf("Command line arguments: \n");
-		printf("[Input file location] [Output file location] [Input Gain] [Headroom Gain] [Mode] \n");
+		printf("[Input file location] [Output file location] [Input Gain] [Headroom Gain] [Mode] [Enable] \n");
 		printf("\n");
 		printf("a) Input gain -> Default = -6db Values: From 0 to  negative inf db \n");
 		printf("b) Headroom gain -> Default = -6db Values: From 0 to negative inf db \n");
 		printf("c) Mode: 0 -> OM2_0_0, 1 -> OM0_2_0, 2 -> OM3_2_0 \n");
+		printf("d) Enable: 0 -> Off, 1 -> On");
 		return -1;
 	}
 	if (argc == 3)
@@ -60,6 +62,7 @@ int main(int argc, char* argv[])
 		headroom_gain = MINUS_3DB;
 		mode = OM2_0_0;
 		OUTPUT_NUM_CHANNELS = 2;
+		enable = ON;
 	} else
 	{
 		// Should I add if input_gain > 1 / 2
@@ -72,7 +75,7 @@ int main(int argc, char* argv[])
 		headroom_gain = pow(10.0, headroom_gainDB / 20.0);
 
 		mode = atoi(argv[5]);
-
+		enable = atoi(argv[6]);
 		if (mode < 0 || mode > 3)
 		{
 			mode = OM2_0_0;
@@ -156,9 +159,10 @@ int main(int argc, char* argv[])
 					sampleBuffer[k][j] = sample / SAMPLE_SCALE;				// scale sample to 1.0/-1.0 range		
 				}
 			}
-
-			gainProcessing(sampleBuffer, sampleBuffer, input_gain, headroom_gain, mode);
-
+			if (mode == ON)
+			{
+				gainProcessing(sampleBuffer, sampleBuffer, input_gain, headroom_gain, mode);
+			}
 			for (int j = 0; j < BLOCK_SIZE; j++)
 			{
 				for (int k = 0; k < outputWAVhdr.fmt.NumChannels; k++)

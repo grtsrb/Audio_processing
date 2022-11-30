@@ -37,7 +37,7 @@
         <dont_init_static_to_zero>true</dont_init_static_to_zero>
         <emit_asm_struct>true</emit_asm_struct>
         <ccc2_additional_cmdLine_parameters></ccc2_additional_cmdLine_parameters>
-        <write_DWARF2_debug_info>true</write_DWARF2_debug_info>
+        <write_DWARF2_debug_info>false</write_DWARF2_debug_info>
         <do_not_treat_signed_integer_overflow>false</do_not_treat_signed_integer_overflow>
         <ignore_functions_debug_attributes>false</ignore_functions_debug_attributes>
         <ignore_inline_function_attribute>false</ignore_inline_function_attribute>

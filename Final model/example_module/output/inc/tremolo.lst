@@ -1,0 +1,120 @@
+1     	 0000					.extern _cl_sin
+2     	 0000					.public _lfo
+3     	 0000					.extern __mul_sat_laccum
+4     	 0000					.extern __laccum_sat_accum
+5     						X__extractedConst_0_2	.xdata_ovly
+5      >> start of macro: .xdata_ovly
+1+    									seg_single X__extractedConst_0_2, "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "X__extractedConst_0_2" != "" ) & defined( ___SegStart_X_X__extractedConst_0_2 )
+2+    						X__extractedConst_0_2    segment
+3+    						  .else
+4+    						X__extractedConst_0_2    segment "X_OVLY"
+5+    							.if "X__extractedConst_0_2" != ""
+6+    	 0000				___SegStart_X_X__extractedConst_0_2
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+6     	 0000				__extractedConst_0_2
+7     	 0000					.dw  (0x7fffffff)
+	 0000	 7FFFFFFF	 
+8     							.code_ovly
+8      >> start of macro: .code_ovly
+1+    									seg_single , "CODE_OVLY", CODE
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_CODE_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "CODE_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_CODE_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .code_ovly
+9     						
+10    						
+11    						
+12    	 0000				_lfo:			/* LN: 28 | CYCLE: 0 | RULES: () */ 
+13    	 0000	 8C4A0002		uhalfword(b0) = (0x2)			# LN: 32 | 
+14    	 0001	 00004F21		a1 - b0			# LN: 32 | 
+15    	 0002	 8408000D		if (a == 0) jmp (case_0)			# LN: 32 | 
+16    	 0003	 00004E00		a0 = a0 << 1			# LN: 54 | 
+17    	 0004	 80880000		call (_cl_sin)			# LN: 54 | 
+18    	 0005	 00004C01		a1 =+ a0			# LN: 54 | 
+19    	 0006	 8C7A4000		b0 = (0x4000)			# LN: 54 | 
+20    	 0007	 00004C20		a0 =+ b0			# LN: 54 | 
+21    	 0008	 80880000		call (__mul_sat_laccum)			# LN: 54 | 
+22    	 0009	 80880000		call (__laccum_sat_accum)			# LN: 54 | 
+23    	 000A	 00004420		a0 = a0 + b0			# LN: 54 | 
+24    	 000B	 48487FFF		a0 = a0			# LN: 54 | 
+25    	 000C	 8008002D		jmp (__epilogue_144)			# LN: 54 | 
+26    	 000D				case_0:			/* LN: 36 | CYCLE: 0 | RULES: () */ 
+27    	 000D	 897A2000		a1 = (0x2000)			# LN: 38 | 
+28    	 000E	 00004F08		a0 - a1			# LN: 38 | 
+29    	 000F	 84C80019		if (a >= 0) jmp (else_0)			# LN: 38 | 
+30    	 0010	 804A0002		uhalfword(x0) = (0x2)			# LN: 40 | 
+31    	 0011	 01587FFF		x1 = a0h			# LN: 40 | 
+32    	 0012	 00002080		a0 = x0 * x1			# LN: 40 | 
+33    	 0013	 00004E40		a0 = a0 >> 1			# LN: 40 | 
+34    	 0014	 90090018		AnyReg(a0h, a0l)			# LN: 40 | 
+35    	 0015	 907A0000		a0l = (0x0)			# LN: 40 | 
+36    	 0016	 897A4000		a1 = (0x4000)			# LN: 40 | 
+37    	 0017	 00004480		a0 = a1 + a0			# LN: 40 | 
+38    	 0018	 8008002D		jmp (__epilogue_144)			# LN: 40 | 
+39    	 0019				else_0:			/* LN: 38 | CYCLE: 0 | RULES: () */ 
+40    	 0019	 897A6000		a1 = (0x6000)			# LN: 42 | 
+41    	 001A	 00004F08		a0 - a1			# LN: 42 | 
+42    	 001B	 84C80027		if (a >= 0) jmp (else_1)			# LN: 42 | 
+43    	 001C	 897A2000		a1 = (0x2000)			# LN: 44 | 
+44    	 001D	 00004448		a0 = a0 - a1			# LN: 44 | 
+45    	 001E	 00587FFF		x0 = a0h			# LN: 44 | 
+46    	 001F	 814A0002		uhalfword(x1) = (0x2)			# LN: 44 | 
+47    	 0020	 00002020		a0 = x1 * x0			# LN: 44 | 
+48    	 0021	 00004E40		a0 = a0 >> 1			# LN: 44 | 
+49    	 0022	 90090018		AnyReg(a0h, a0l)			# LN: 44 | 
+50    	 0023	 907A0000		a0l = (0x0)			# LN: 44 | 
+51    	 0024	 89040000		a1 = xmem[__extractedConst_0_2 + 0]			# LN: 44 | 
+52    	 0025	 000044C0		a0 = a1 - a0			# LN: 44 | 
+53    	 0026	 8008002D		jmp (__epilogue_144)			# LN: 44 | 
+54    	 0027				else_1:			/* LN: 42 | CYCLE: 0 | RULES: () */ 
+55    	 0027	 897A6000		a1 = (0x6000)			# LN: 48 | 
+56    	 0028	 00004448		a0 = a0 - a1			# LN: 48 | 
+57    	 0029	 00587FFF		x0 = a0h			# LN: 48 | 
+58    	 002A	 81040000		x1 = xmem[__extractedConst_0_2 + 0]			# LN: 48 | 
+59    	 002B	 00002020		a0 = x1 * x0			# LN: 48 | 
+60    	 002C	 48487FFF		a0 = a0			# LN: 48 | 
+61    	 002D				__epilogue_144:			/* LN: 58 | CYCLE: 0 | RULES: () */ 
+62    	 002D	 81880000		ret			# LN: 58 | 
+63    						(null)
+				 SYMBOL TABLE 
+
+    Name                                                                                    Type                  Value 
+
+X__extractedConst_0_2                                                           			  Unused Relocatable        X__extractedConst_0_2:0000H
+_COMMON_INC_PATH_                                                               					 Define                 "C:/CirrusDSP/crystal32/common/inc/"
+_DSP_                                                                           			  Unused Variable		        0 (0H)
+_LOCAL_INC_PATH_                                                                					 Define                 "inc/"
+_LOCAL_SRC_PATH_                                                                					 Define                 "src/"
+_ROUTER_INC_PATH_                                                               					 Define                 "rom_inc/"
+__CASM_VER__                                                                    			  Unused Variable		        0 (701H)
+___SegStart_X_X__extractedConst_0_2                                             			  Unused Relocatable        X__extractedConst_0_2:0000H
+__epilogue_144                                                                  			         Relocatable         tremolo_GEN_0000:002DH
+__extractedConst_0_2                                                            			         Relocatable         X__extractedConst_0_2:0000H
+__laccum_sat_accum                                                              					 External   
+__mul_sat_laccum                                                                					 External   
+_cl_sin                                                                         					 External   
+_lfo                                                                            			  Public Relocatable       tremolo_GEN_0000:0000H
+case_0                                                                          			         Relocatable         tremolo_GEN_0000:000DH
+else_0                                                                          			         Relocatable         tremolo_GEN_0000:0019H
+else_1                                                                          			         Relocatable         tremolo_GEN_0000:0027H
+
+	       SEGMENTS:
+
+Size			  Name										 Class
+0000H	 __INIT                                  			 CODE                                    
+0001H	 X__extractedConst_0_2                   			 X_OVLY                                  
+002EH	 tremolo_GEN_0000                        			 CODE_OVLY                               

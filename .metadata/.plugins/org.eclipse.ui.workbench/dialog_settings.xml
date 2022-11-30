@@ -2,6 +2,20 @@
 <section name="Workbench">
 	<section name="NewWizardAction">
 	</section>
+	<section name="ShowViewDialog">
+		<item value="392" key="DIALOG_WIDTH"/>
+		<item value="dsp.profiling.fulltree.views.SampleView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="205" key="DIALOG_Y_ORIGIN"/>
+		<item value="479" key="DIALOG_HEIGHT"/>
+		<item value="773" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui"/>
+			<item value="dsp.composer.ui.view.composerViewCategory"/>
+			<item value="clide.ui.consoles"/>
+			<item value="org.eclipse.debug.ui"/>
+		</list>
+	</section>
 	<section name="ImportExportAction">
 	</section>
 </section>

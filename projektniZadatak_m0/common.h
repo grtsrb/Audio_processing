@@ -31,5 +31,10 @@ enum OUTPUT_MODES
 	OM3_2_0 = 2, // L & R & C & Ls & Rs
 };
 
+enum ENABLE_MODES
+{
+	OFF = 0,
+	ON = 1,
+};
 
 #endif // !COMMON_H

@@ -2,12 +2,13 @@
 <settings>
 <clideViews>
 <clideView viewId="clide.debug.ui.memoryView">
-<memoryTab columnCount="8" core="DSP_A" memoryZone="X" tabAddress="82"/>
+<memoryTab columnCount="8" core="DSP_A" memoryZone="Y" tabAddress="0"/>
+</clideView>
+<clideView viewId="clide.debug.ui.memoryView.0">
+<memoryTab columnCount="8" core="DSP_A" memoryZone="Y" tabAddress="0"/>
 </clideView>
 <clideView viewId="clide.debug.ui.registersView">
-<registerView regViewCoreName="DSP_A">
-<regViewMementoCore scrollPercent="0.0" selectedItem="/DSP_A/Accum registers/a0">
-<layoutType horizontal="0" register_details="1"/>
+<registerView regViewCoreName="DSP_A">&#x0A;<regViewMementoCore scrollPercent="0.0" selectedItem="/DSP_A/Accum registers/b0">&#x0A;<layoutType horizontal="0" register_details="1"/>
 <expandedPath item_0="DSP_A"/>
 <expandedPath item_0="DSP_A" item_1="Data registers"/>
 <expandedPath item_0="DSP_A" item_1="Accum registers"/>
@@ -18,18 +19,33 @@
 </registerView>
 </clideView>
 </clideViews>
-<perspective id="CLIDE.DebugPerspective"/>
+<perspective id="CLIDE.perspective"/>
 <workbench_editors>
 <editor file_path="/projektniZadatak_m3/.suldproj"/>
 <editor file_path="/projektniZadatak_m3/src/gainProc.a"/>
-<editor file_path="/projektniZadatak_m3/inc/common.h"/>
-<editor file_path="/projektniZadatak_m3/src/tremolo.c"/>
-<editor file_path="/projektniZadatak_m3/src/main.c"/>
 <editor file_path="/projektniZadatak_m3/src/processing.c"/>
-<editor file_path="/projektniZadatak_m3/inc/processing.h"/>
+<editor file_path="/projektniZadatak_m3/src/main.c"/>
+<editor file_path="/projektniZadatak_m3/inc/common.h"/>
+<editor file_path="/projektniZadatak_m3/crystal32.groovy"/>
+<editor file_path="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP"/>
 </workbench_editors>
 <views/>
 <watchExpressions/>
 <launcherConfiguration/>
+<launchHistory>
+<launchGroup id="org.eclipse.ui.externaltools.launchGroup">&#x0A;<mruHistory/>
+<favorites/>
+</launchGroup>
+<launchGroup id="org.eclipse.debug.ui.launchGroup.profile">&#x0A;<mruHistory/>
+<favorites/>
+</launchGroup>
+<launchGroup id="org.eclipse.debug.ui.launchGroup.debug">&#x0A;<mruHistory>&#x0A;<launch memento="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#x0D;&#x0A;&lt;launchConfiguration local=&quot;true&quot; path=&quot;APP new Configuration&quot;/&gt;&#x0D;&#x0A;"/>
+</mruHistory>
+<favorites/>
+</launchGroup>
+<launchGroup id="org.eclipse.debug.ui.launchGroup.run">&#x0A;<mruHistory/>
+<favorites/>
+</launchGroup>
+</launchHistory>
 <projectSettings/>
 </settings>

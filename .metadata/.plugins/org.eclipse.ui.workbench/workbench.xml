@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="21" version="2.0">
+<workbench progressCount="16" version="2.0">
 <workbenchAdvisor/>
 <window height="1048" maximized="true" width="978" x="-8" y="0">
 <fastViewData fastViewLocation="1024"/>
@@ -18,14 +18,15 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="99" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="pda.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="clide.scripteditor.ui.editor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="clide.scripteditor.ui.editor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="clide.debug.ui.ceditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="dsp.uld.ui.editors.StandaloneMultiPageEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
 </coolbarLayout>
-<page aggregateWorkingSetId="Aggregate for window 1669304764699" focus="true" label="Workspace - Debug">
+<page aggregateWorkingSetId="Aggregate for window 1669304764699" focus="true" label="Workspace - Development">
 <editors>
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
@@ -48,27 +49,31 @@
 </editor>
 <editor id="pda.editor" name="gainProc.a" partName="/projektniZadatak_m3/src/gainProc.a" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/gainProc.a" title="/projektniZadatak_m3/src/gainProc.a" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/gainProc.a&#x0A;projektniZadatak_m3/src/gainProc.a" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/src/gainProc.a"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="868" selectionTopPixel="0"/>
-</editor>
-<editor id="clide.debug.ui.ceditor" name="common.h" partName="/projektniZadatak_m3/inc/common.h" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/inc/common.h" title="/projektniZadatak_m3/inc/common.h" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/inc/common.h&#x0A;projektniZadatak_m3/inc/common.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/inc/common.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="185" selectionTopPixel="722"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="64" selectionTopPixel="180"/>
 </editor>
 <editor id="clide.debug.ui.ceditor" name="tremolo.c" partName="/projektniZadatak_m3/src/tremolo.c" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/tremolo.c" title="/projektniZadatak_m3/src/tremolo.c" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/tremolo.c&#x0A;projektniZadatak_m3/src/tremolo.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/src/tremolo.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="24" selectionTopPixel="0"/>
-</editor>
-<editor activePart="true" focus="true" id="clide.debug.ui.ceditor" name="main.c" partName="/projektniZadatak_m3/src/main.c" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/main.c" title="/projektniZadatak_m3/src/main.c" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/main.c&#x0A;projektniZadatak_m3/src/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/src/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2573" selectionTopPixel="2290"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="128" selectionTopPixel="1031"/>
 </editor>
 <editor id="clide.debug.ui.ceditor" name="processing.c" partName="/projektniZadatak_m3/src/processing.c" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/processing.c" title="/projektniZadatak_m3/src/processing.c" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/processing.c&#x0A;projektniZadatak_m3/src/processing.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/src/processing.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="277" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1451" selectionTopPixel="1366"/>
 </editor>
-<editor id="clide.debug.ui.ceditor" name="processing.h" partName="/projektniZadatak_m3/inc/processing.h" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/inc/processing.h" title="/projektniZadatak_m3/inc/processing.h" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/inc/processing.h&#x0A;projektniZadatak_m3/inc/processing.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/inc/processing.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="20" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="clide.debug.ui.ceditor" name="main.c" partName="/projektniZadatak_m3/src/main.c" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/main.c" title="/projektniZadatak_m3/src/main.c" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/src/main.c&#x0A;projektniZadatak_m3/src/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/src/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2693" selectionTopPixel="1976"/>
+</editor>
+<editor id="clide.debug.ui.ceditor" name="common.h" partName="/projektniZadatak_m3/inc/common.h" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/inc/common.h" title="/projektniZadatak_m3/inc/common.h" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/inc/common.h&#x0A;projektniZadatak_m3/inc/common.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/inc/common.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="963" selectionTopPixel="746"/>
+</editor>
+<editor id="clide.scripteditor.ui.editor" name="crystal32.groovy" partName="/projektniZadatak_m3/crystal32.groovy" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/crystal32.groovy" title="/projektniZadatak_m3/crystal32.groovy" tooltip="projektniZadatak_m3/crystal32.groovy" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/crystal32.groovy"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3135" selectionTopPixel="810"/>
+</editor>
+<editor id="clide.debug.ui.logFileEditor" name="projektniZadatak_m3.MAP" partName="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" path="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" title="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" tooltip="C:/Users/milic/Desktop/Dsp Projekat/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP&#x0A;projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5768" selectionTopPixel="1340"/>
 </editor>
 </editors>
 <views>
@@ -79,8 +84,15 @@
 <viewState/>
 </view>
 <view id="org.eclipse.pde.runtime.LogView" partName="Error Log"/>
-<view id="org.eclipse.debug.ui.VariableView" partName="Variables"/>
-<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints"/>
+<view id="dsp.profiling.fulltree.views.SampleView" partName="Profiling">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline"/>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.cdt.ui.cview.groupincludes="false" org.eclipse.cdt.ui.cview.groupmacros="false" org.eclipse.cdt.ui.editor.CUChildren="true" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
@@ -113,9 +125,11 @@
 <view id="dsp.composer.xmlwizard.ui.CLIDEPropertiesView" partName="Properties View">
 <viewState/>
 </view>
-<view id="clide.ui.visualization.views.OscilloscopeView" partName="Oscilloscope View"/>
+<view id="clide.ui.visualization.views.OscilloscopeView" partName="Oscilloscope View">
+<viewState/>
+</view>
 </views>
-<perspectives activePart="clide.debug.ui.ceditor" activePerspective="CLIDE.DebugPerspective">
+<perspectives activePart="dsp.profiling.fulltree.views.SampleView" activePerspective="CLIDE.perspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="clide.ui.perspectives.Perspective" id="CLIDE.perspective" label="Development"/>
 <alwaysOnActionSet id="clide.ui.cheatsheets.actionSet"/>
@@ -135,34 +149,50 @@
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.pde.runtime.LogView"/>
 <view id="org.eclipse.ui.views.ProblemView"/>
+<view id="dsp.profiling.fulltree.views.SampleView"/>
 <view id="dsp.composer.xmlwizard.ui.CLIDEPropertiesView"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <fastViewBars/>
-<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="left">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<layout>
+<mainWindow>
+<info folder="true" part="left">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.749499" ratioLeft="748" ratioRight="250" relationship="2" relative="left">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.749499" ratioLeft="748" ratioRight="250" relationship="2" relative="left">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.21943888" ratioLeft="219" ratioRight="779" relationship="2" relative="left"/>
-<info folder="true" part="console" ratio="0.6335541" ratioLeft="574" ratioRight="332" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="console" ratio="0.6335541" ratioLeft="574" ratioRight="332" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="dsp.profiling.fulltree.views.SampleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.pde.runtime.LogView" label="Error Log"/>
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="dsp.profiling.fulltree.views.SampleView" label="Profiling"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="right" ratio="0.7496791" ratioLeft="584" ratioRight="195" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="dsp.composer.xmlwizard.ui.CLIDEPropertiesView" appearance="2" expanded="2">&#x0A;<page content="dsp.composer.xmlwizard.ui.CLIDEPropertiesView" label="Properties View"/>
+<info folder="true" part="right" ratio="0.7496791" ratioLeft="584" ratioRight="195" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="dsp.composer.xmlwizard.ui.CLIDEPropertiesView" appearance="2" expanded="2">
+<page content="dsp.composer.xmlwizard.ui.CLIDEPropertiesView" label="Properties View"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
@@ -201,7 +231,7 @@
 <layout>
 <mainWindow>
 <info folder="true" part="left">
-<folder activePageID="clide.debug.ui.registersView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
 <page content="clide.debug.ui.registersView" label="DSP Core Registers"/>
 <page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -225,13 +255,14 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="clide.wiewFolder.console" ratio="0.687638" ratioLeft="623" ratioRight="283" relationship="4" relative="clide.wiewFolder.debug">
-<folder activePageID="clide.debug.ui.memoryView" appearance="2" expanded="2">
+<info folder="true" part="clide.wiewFolder.console" ratio="0.9679912" ratioLeft="877" ratioRight="29" relationship="4" relative="clide.wiewFolder.debug">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
-<page content="clide.debug.ui.memoryView" label="Memory View"/>
 <page content="clide.ui.visualization.views.VisualizationView" label="Visualization View"/>
 <page content="clide.ui.visualization.views.OscilloscopeView" label="Oscilloscope View"/>
+<page content="clide.debug.ui.memoryView" label="Memory View"/>
 <page content="clide.ui.visualization.views.ResponseGraphView" label="LabelNotFound"/>
+<page content="clide.debug.ui.memoryView:clide.debug.ui.memoryView.0" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
@@ -240,9 +271,9 @@
 </presentation>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.1967742" ratioLeft="122" ratioRight="498" relationship="4" relative="clide.wiewFolder.debug"/>
+<info part="org.eclipse.ui.editorss" ratio="0.4032258" ratioLeft="250" ratioRight="370" relationship="4" relative="clide.wiewFolder.debug"/>
 <info folder="true" part="clide.wiewFolder.watch" ratio="0.44929397" ratioLeft="350" ratioRight="429" relationship="2" relative="clide.wiewFolder.debug">
-<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
@@ -260,150 +291,145 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" path="/projektniZadatak_m3/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" path="/projektniZadatak_m3/src/processing.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="pda.editor" path="/projektniZadatak_m3/src/gainProc.a"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.scripteditor.ui.editor" path="/projektniZadatak_m3/crystal32.groovy"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" path="/projektniZadatak_m3/inc/common.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="dsp.uld.ui.editors.StandaloneMultiPageEditor" path="/projektniZadatak_m3/.suldproj"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/projektniZadatak_m3/output/standalone/standalone.build.log"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" path="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.uldc"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" path="/projektniZadatak_m3/src/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.logFileEditor" path="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP"/>
 </editors>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2652" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1953" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3184" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="2032" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3222" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="2048" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3261" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="2065" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3309" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="2082" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2611" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="2099" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2652" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="2116" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3184" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3222" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/gainProc.a" index="1">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3261" y="0"/>
+<item historyLabel="/projektniZadatak_m3/crystal32.groovy" index="2">
+<position info="not_deleted" x="3135" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3309" y="0"/>
+<item historyLabel="/projektniZadatak_m3/inc/common.h" index="3">
+<position info="not_deleted" x="887" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2611" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="standalone.build.log" index="5">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2652" y="0"/>
+<item historyLabel="projektniZadatak_m3.uldc" index="6">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3184" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/crystal32.groovy" index="2">
+<position info="not_deleted" x="3135" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3222" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/gainProc.a" index="1">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3261" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3309" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="2693" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2611" y="0"/>
+<item historyLabel="/projektniZadatak_m3/inc/common.h" index="3">
+<position info="not_deleted" x="963" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2652" y="0"/>
+<item historyLabel="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" index="8">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3184" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/gainProc.a" index="1">
+<position info="not_deleted" x="64" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3222" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3261" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" index="8">
+<position info="not_deleted" x="5768" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3309" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="2693" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2611" y="0"/>
+<item historyLabel="/projektniZadatak_m3/inc/common.h" index="3">
+<position info="not_deleted" x="963" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2652" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="1593" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3184" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3222" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="1593" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3261" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="2820" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3309" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/gainProc.a" index="1">
+<position info="not_deleted" x="64" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2611" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2652" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="2693" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3184" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="2693" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3222" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" index="8">
+<position info="not_deleted" x="5768" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3261" y="0"/>
+<item historyLabel="/projektniZadatak_m3/.suldproj" index="4"/>
+<item historyLabel="/projektniZadatak_m3/src/gainProc.a" index="1">
+<position info="not_deleted" x="64" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3309" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2611" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="2693" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2652" y="0"/>
+<item historyLabel="/projektniZadatak_m3/inc/common.h" index="3">
+<position info="not_deleted" x="963" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="3184" y="0"/>
+<item historyLabel="/projektniZadatak_m3/src/processing.c" index="0">
+<position info="not_deleted" x="1451" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="1651" y="0"/>
+<item historyLabel="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP" index="8">
+<position info="not_deleted" x="5768" y="0"/>
 </item>
-<item historyLabel="/projektniZadatak_m3/.suldproj" index="1"/>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="1705" y="0"/>
-</item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="1738" y="0"/>
-</item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="1775" y="0"/>
-</item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="1860" y="0"/>
-</item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2017" y="0"/>
-</item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2248" y="0"/>
-</item>
-<item historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2573" y="0"/>
-</item>
-<item active="true" historyLabel="/projektniZadatak_m3/src/main.c" index="0">
-<position info="not_deleted" x="2573" y="0"/>
+<item active="true" historyLabel="/projektniZadatak_m3/src/main.c" index="7">
+<position info="not_deleted" x="2693" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -422,14 +448,26 @@
 </trimLayout>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" name="processing.h" tooltip="projektniZadatak_m3/inc/processing.h">
-<persistable path="/projektniZadatak_m3/inc/processing.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.logFileEditor" name="projektniZadatak_m3.MAP" tooltip="projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP">
+<persistable path="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.MAP"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="projektniZadatak_m3.uldc" tooltip="projektniZadatak_m3/output/standalone/projektniZadatak_m3.uldc">
+<persistable path="/projektniZadatak_m3/output/standalone/projektniZadatak_m3.uldc"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="standalone.build.log" tooltip="projektniZadatak_m3/output/standalone/standalone.build.log">
+<persistable path="/projektniZadatak_m3/output/standalone/standalone.build.log"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.scripteditor.ui.editor" name="crystal32.groovy" tooltip="projektniZadatak_m3/crystal32.groovy">
+<persistable path="/projektniZadatak_m3/crystal32.groovy"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" name="common.h" tooltip="projektniZadatak_m3/inc/common.h">
+<persistable path="/projektniZadatak_m3/inc/common.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" name="main.c" tooltip="projektniZadatak_m3/src/main.c">
+<persistable path="/projektniZadatak_m3/src/main.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="clide.debug.ui.ceditor" name="processing.c" tooltip="projektniZadatak_m3/src/processing.c">
 <persistable path="/projektniZadatak_m3/src/processing.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="pda.editor" name="main.s" tooltip="projektniZadatak_m3/output/standalone/src/main.s">
-<persistable path="/projektniZadatak_m3/output/standalone/src/main.s"/>
 </file>
 </mruList>
 </workbench>

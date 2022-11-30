@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings built="true" last_build_time="1669837242302">
+	<dependencies>
+		<source_file last_build_time="1669837241881" path="inc/tremolo.c">
+			<dependency>./common.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/stdfix.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/scaling_coeff.h</dependency>
+			<dependency>./stdfix_emu.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/dsplib/dsp_math.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/dsplib/dsp_types.h</dependency>
+		</source_file>
+		<source_file last_build_time="1669837240362" path="src/gainProc.a">
+			<dependency>../gen/inc/example_module_mcv.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/dsplib/meter_asm.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/dsplib/response_asm.h</dependency>
+		</source_file>
+		<source_file last_build_time="1669837240867" path="src/example_module_os_interface.a">
+			<dependency>../../../../../../../CirrusDSP/crystal32/common/inc/macros.h</dependency>
+			<dependency>../gen/inc/example_module_module.h</dependency>
+		</source_file>
+		<source_file last_build_time="1669837241383" path="src/example_module_main.a">
+			<dependency>../../../../../../../CirrusDSP/include/dsplib/os_asm.h</dependency>
+			<dependency>../gen/inc/example_module_mcv.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/dsplib/meter_asm.h</dependency>
+			<dependency>../../../../../../../CirrusDSP/include/dsplib/response_asm.h</dependency>
+		</source_file>
+	</dependencies>
+</settings>

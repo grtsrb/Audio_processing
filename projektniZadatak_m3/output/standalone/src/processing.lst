@@ -4,78 +4,32 @@
 4     	 0000					.public _input_gain
 5     	 0000					.public _mode
 6     	 0000					.public _tremoloBuffer
-7     							.xdata_ovly
-7      >> start of macro: .xdata_ovly
-1+    									seg_single , "X_OVLY", X
+7     	 0000					.public _tremoloL
+8     	 0000					.public _tremoloR
+9     							.ydata_ovly
+9      >> start of macro: .ydata_ovly
+1+    									seg_single , "Y_OVLY", Y
 1+     >> start of macro: seg_single
-1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+1+    						  .if ( "" != "" ) & defined( ___SegStart_Y_ )
 2+    						    segment
 3+    						  .else
-4+    						    segment "X_OVLY"
+4+    						    segment "Y_OVLY"
 5+    							.if "" != ""
-6+    						___SegStart_X_
+6+    						___SegStart_Y_
 7+    							.endif
 8+    						  .endif
 9+    							#RememberSegmentType
 10+    >> end of macro: seg_single
-2+     >> end of macro: .xdata_ovly
-8     	 0000				_OUTPUT_GAIN2
-9     	 0000					.dw  (0x65ac8a37)
-	 0000	 65AC8A37	 
-10    							.xdata_ovly
-10     >> start of macro: .xdata_ovly
-1+    									seg_single , "X_OVLY", X
-1+     >> start of macro: seg_single
-1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
-2+    						    segment
-3+    						  .else
-4+    						    segment "X_OVLY"
-5+    							.if "" != ""
-6+    						___SegStart_X_
-7+    							.endif
-8+    						  .endif
-9+    							#RememberSegmentType
-10+    >> end of macro: seg_single
-2+     >> end of macro: .xdata_ovly
-11    	 0000				_OUTPUT_GAIN6
-12    	 0000					.dw  (0x4026aa8f)
-	 0000	 4026AA8F	 
-13    							.xdata_ovly
-13     >> start of macro: .xdata_ovly
-1+    									seg_single , "X_OVLY", X
-1+     >> start of macro: seg_single
-1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
-2+    						    segment
-3+    						  .else
-4+    						    segment "X_OVLY"
-5+    							.if "" != ""
-6+    						___SegStart_X_
-7+    							.endif
-8+    						  .endif
-9+    							#RememberSegmentType
-10+    >> end of macro: seg_single
-2+     >> end of macro: .xdata_ovly
-14    	 0000				_headroom_gain
-15    	 0000					.dw  (0x0)
-	 0000	 00000000	 
-16    							.xdata_ovly
-16     >> start of macro: .xdata_ovly
-1+    									seg_single , "X_OVLY", X
-1+     >> start of macro: seg_single
-1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
-2+    						    segment
-3+    						  .else
-4+    						    segment "X_OVLY"
-5+    							.if "" != ""
-6+    						___SegStart_X_
-7+    							.endif
-8+    						  .endif
-9+    							#RememberSegmentType
-10+    >> end of macro: seg_single
-2+     >> end of macro: .xdata_ovly
-17    	 0000				_input_gain
-18    	 0000					.dw  (0x0)
-	 0000	 00000000	 
+2+     >> end of macro: .ydata_ovly
+10    						S_tremoloR_0	.struct
+11    						_numChannels	.dw (0x0)
+12    						_LFO_frequency	.dw (0x0)
+13    						_depth	.dw (0x0)
+14    						_waveform	.dw (0x0)
+15    						_lfoPhase	.dw (0x0)
+16    						_inverseSampleRate	.dw (0x0)
+17    							.endstruct
+18    						
 19    							.xdata_ovly
 19     >> start of macro: .xdata_ovly
 1+    									seg_single , "X_OVLY", X
@@ -91,10 +45,82 @@
 9+    							#RememberSegmentType
 10+    >> end of macro: seg_single
 2+     >> end of macro: .xdata_ovly
-20    	 0000				_mode
-21    	 0000					.bss (0x1)
-22    							.ydata_ovly
-22     >> start of macro: .ydata_ovly
+20    	 0000				_OUTPUT_GAIN2
+21    	 0000					.dw  (0x65ac8a37)
+	 0000	 65AC8A37	 
+22    							.xdata_ovly
+22     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+23    	 0000				_OUTPUT_GAIN6
+24    	 0000					.dw  (0x4026aa8f)
+	 0000	 4026AA8F	 
+25    							.xdata_ovly
+25     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+26    	 0000				_headroom_gain
+27    	 0000					.dw  (0x0)
+	 0000	 00000000	 
+28    							.xdata_ovly
+28     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+29    	 0000				_input_gain
+30    	 0000					.dw  (0x0)
+	 0000	 00000000	 
+31    							.xdata_ovly
+31     >> start of macro: .xdata_ovly
+1+    									seg_single , "X_OVLY", X
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_X_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "X_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_X_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .xdata_ovly
+32    	 0000				_mode
+33    	 0000					.bss (0x1)
+34    							.ydata_ovly
+34     >> start of macro: .ydata_ovly
 1+    									seg_single , "Y_OVLY", Y
 1+     >> start of macro: seg_single
 1+    						  .if ( "" != "" ) & defined( ___SegStart_Y_ )
@@ -108,9 +134,55 @@
 9+    							#RememberSegmentType
 10+    >> end of macro: seg_single
 2+     >> end of macro: .ydata_ovly
-23    	 0000				_tremoloBuffer
-24    	 0000					.bss (0x20)
-25    						(null)
+35    	 0000				_tremoloBuffer
+36    	 0000					.bss (0x20)
+37    							.ydata_ovly
+37     >> start of macro: .ydata_ovly
+1+    									seg_single , "Y_OVLY", Y
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_Y_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "Y_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_Y_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .ydata_ovly
+38    	 0000				(null)	 0000	 00000000	 
+38    	 0001				(null)	 0001	 00000000	 
+38    	 0002				(null)	 0002	 00000000	 
+38    	 0003				(null)	 0003	 00000000	 
+38    	 0004				(null)	 0004	 00000000	 
+38    	 0005				(null)	 0005	 00000000	 
+38    						_tremoloL S_tremoloR_0
+39    						
+40    							.ydata_ovly
+40     >> start of macro: .ydata_ovly
+1+    									seg_single , "Y_OVLY", Y
+1+     >> start of macro: seg_single
+1+    						  .if ( "" != "" ) & defined( ___SegStart_Y_ )
+2+    						    segment
+3+    						  .else
+4+    						    segment "Y_OVLY"
+5+    							.if "" != ""
+6+    						___SegStart_Y_
+7+    							.endif
+8+    						  .endif
+9+    							#RememberSegmentType
+10+    >> end of macro: seg_single
+2+     >> end of macro: .ydata_ovly
+41    	 0000				(null)	 0000	 00000000	 
+41    	 0001				(null)	 0001	 00000000	 
+41    	 0002				(null)	 0002	 00000000	 
+41    	 0003				(null)	 0003	 00000000	 
+41    	 0004				(null)	 0004	 00000000	 
+41    	 0005				(null)	 0005	 00000000	 
+41    						_tremoloR S_tremoloR_0
+42    						
+43    						(null)
 				 SYMBOL TABLE 
 
     Name                                                                                    Type                  Value 
@@ -120,8 +192,8 @@ _DSP_                                                                           
 _LOCAL_INC_PATH_                                                                					 Define                 "inc/"
 _LOCAL_SRC_PATH_                                                                					 Define                 "src/"
 _MUI_VERSION_                                                                   					 Define                 "020000"
-_OUTPUT_GAIN2                                                                   			  Public Relocatable       processing_GEN_0000:0000H
-_OUTPUT_GAIN6                                                                   			  Public Relocatable       processing_GEN_0001:0000H
+_OUTPUT_GAIN2                                                                   			  Public Relocatable       processing_GEN_0001:0000H
+_OUTPUT_GAIN6                                                                   			  Public Relocatable       processing_GEN_0002:0000H
 _OVLY_                                                                          					 Define                 "standalone"
 _OVLY_REVISION_                                                                 					 Define                 "020000"
 _ROUTER_INC_PATH_                                                               					 Define                 "rom_inc/"
@@ -130,18 +202,33 @@ _TARGET_FAMILY_                                                                 
 _TOOLS_VERSION_                                                                 					 Define                 "0x0701"
 _VERSION_                                                                       					 Define                 "00"
 __CASM_VER__                                                                    			  Unused Variable		        0 (701H)
-_headroom_gain                                                                  			  Public Relocatable       processing_GEN_0002:0000H
-_input_gain                                                                     			  Public Relocatable       processing_GEN_0003:0000H
-_mode                                                                           			  Public Relocatable       processing_GEN_0004:0000H
-_tremoloBuffer                                                                  			  Public Relocatable       processing_GEN_0005:0000H
+_headroom_gain                                                                  			  Public Relocatable       processing_GEN_0003:0000H
+_input_gain                                                                     			  Public Relocatable       processing_GEN_0004:0000H
+_mode                                                                           			  Public Relocatable       processing_GEN_0005:0000H
+_tremoloBuffer                                                                  			  Public Relocatable       processing_GEN_0006:0000H
+_tremoloL._LFO_frequency                                                        			  Unused Relocatable        processing_GEN_0007:0001H
+_tremoloL._depth                                                                			  Unused Relocatable        processing_GEN_0007:0002H
+_tremoloL._inverseSampleRate                                                    			  Unused Relocatable        processing_GEN_0007:0005H
+_tremoloL._lfoPhase                                                             			  Unused Relocatable        processing_GEN_0007:0004H
+_tremoloL._numChannels                                                          			  Unused Relocatable        processing_GEN_0007:0000H
+_tremoloL._waveform                                                             			  Unused Relocatable        processing_GEN_0007:0003H
+_tremoloR._LFO_frequency                                                        			  Unused Relocatable        processing_GEN_0008:0001H
+_tremoloR._depth                                                                			  Unused Relocatable        processing_GEN_0008:0002H
+_tremoloR._inverseSampleRate                                                    			  Unused Relocatable        processing_GEN_0008:0005H
+_tremoloR._lfoPhase                                                             			  Unused Relocatable        processing_GEN_0008:0004H
+_tremoloR._numChannels                                                          			  Unused Relocatable        processing_GEN_0008:0000H
+_tremoloR._waveform                                                             			  Unused Relocatable        processing_GEN_0008:0003H
 
 	       SEGMENTS:
 
 Size			  Name										 Class
 0000H	 __INIT                                  			 CODE                                    
-0001H	 processing_GEN_0000                     			 X_OVLY                                  
+0000H	 processing_GEN_0000                     			 Y_OVLY                                  
 0001H	 processing_GEN_0001                     			 X_OVLY                                  
 0001H	 processing_GEN_0002                     			 X_OVLY                                  
 0001H	 processing_GEN_0003                     			 X_OVLY                                  
 0001H	 processing_GEN_0004                     			 X_OVLY                                  
-0020H	 processing_GEN_0005                     			 Y_OVLY                                  
+0001H	 processing_GEN_0005                     			 X_OVLY                                  
+0020H	 processing_GEN_0006                     			 Y_OVLY                                  
+0006H	 processing_GEN_0007                     			 Y_OVLY                                  
+0006H	 processing_GEN_0008                     			 Y_OVLY                                  

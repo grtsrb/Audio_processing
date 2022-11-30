@@ -15,24 +15,26 @@
 15    	 0003				_waveform .equ 3
 16    	 0004				_lfoPhase .equ 4
 17    	 0005				_inverseSampleRate .equ 5
-18    						
+18    						#_SAMPLE_RATE .equ 4800
 19    						
 20    	 0000					.public _gainProcessing
 21    	 0000					.public _initialize
 22    	 0000					.public _processBlock
-23    	 0000					.extern _tremoloBuffer
-24    	 0000					.extern _headroom_gain
-25    	 0000					.extern _input_gain
-26    	 0000					.extern _OUTPUT_GAIN6
-27    	 0000					.extern _OUTPUT_GAIN2
-28    	 0000					.extern _mode
-29    	 0000					.extern _tremoloL
-30    	 0000					.extern _tremoloR
-31    	 0000					.extern _lfo
-32    							#.extern _processBlock
-33    						
-34    							.code_ovly
-34     >> start of macro: .code_ovly
+23    							#.public _init
+24    	 0000					.extern _tremoloBuffer
+25    	 0000					.extern _headroom_gain
+26    	 0000					.extern _input_gain
+27    	 0000					.extern _OUTPUT_GAIN6
+28    	 0000					.extern _OUTPUT_GAIN2
+29    	 0000					.extern _mode
+30    	 0000					.extern _tremoloL
+31    	 0000					.extern _tremoloR
+32    	 0000					.extern _lfo
+33    							#.extern _init
+34    							#.extern _processBlock
+35    						
+36    							.code_ovly
+36     >> start of macro: .code_ovly
 1+    									seg_single , "CODE_OVLY", CODE
 1+     >> start of macro: seg_single
 1+    						  .if ( "" != "" ) & defined( ___SegStart_CODE_ )
@@ -46,176 +48,199 @@
 9+    							#RememberSegmentType
 10+    >> end of macro: seg_single
 2+     >> end of macro: .code_ovly
-35    						
-36    						
 37    						
-38    	 0000				_initialize:
-39    						# void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
-40    							
-41    							# a0 = input_gain_func
-42    							# a1 = headroom_gain_func
-43    							# b0 = mode_func
-44    							
-45    							
-46    	 0000	 88440000		xmem[_input_gain] = a0
-47    						
-48    	 0001	 89440000		xmem[_headroom_gain] = a1
-49    							
-50    	 0002	 8C440000		xmem[_mode] = b0
+38    						
+39    						
+40    	 0000				_initialize:
+41    						# void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
+42    							
+43    							# a0 = input_gain_func
+44    							# a1 = headroom_gain_func
+45    							# b0 = mode_func
+46    							
+47    							
+48    	 0000	 88440000		xmem[_input_gain] = a0
+49    						
+50    	 0001	 89440000		xmem[_headroom_gain] = a1
 51    							
-52    	 0003	 81880000		ret
-53    	 0004				_gainProcessing:
-54    							# void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE], __memY DSPfract pOut[][BLOCK_SIZE]);
-55    							# i0 = pIn
-56    							# i1 = pOut
-57    	 0004	 B94A0000		i5 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
-58    	 0005	 8100002A		do(_BLOCK_SIZE),>loop
-59    	 0006	 80940000			x0 = ymem[i0] # get L values
-60    	 0007	 84040000			y0 = xmem[_input_gain] # get Input Gain
-61    	 0008	 00002404			b0 = x0 * y0	# left_channel * input_gain
-62    	 0009	 8CD40005			ymem[i5] = b0	# value to Ls tremoloBuffer
-63    	 000A	 85550010			i5 = i5 + _BLOCK_SIZE	# go to Rs channel
-64    								
-65    	 000B	 80050010			i0 = i0 + _BLOCK_SIZE # go to R channel
-66    	 000C	 00007FFF			nop
-67    	 000D	 80940000			x0 = ymem[i0]	# get R values
-68    	 000E	 90050010			i0 = i0 - _BLOCK_SIZE
-69    	 000F	 00002405			b1 = x0 * y0
-70    	 0010	 8DD40005			ymem[i5] = b1
-71    	 0011	 95550010			i5 = i5 - _BLOCK_SIZE
-72    								
-73    	 0012	 88040000			a0 = xmem[_mode]	
-74    	 0013	 894A0001			uhalfword(a1) = (1)
-75    	 0014	 00004F08			a0 - a1
-76    	 0015	 84080029			if (a == 0) jmp>ifOM3
-77    									# if yes, sum*headroom_gain -> L & R output
-78    	 0016	 0000440C				b0 = b0 + b1
-79    									
-80    	 0017	 4C407FFF				x0 = b0
-81    	 0018	 84040000				y0 = xmem[_headroom_gain]
-82    	 0019	 00002400				a0 = x0 * y0
-83    									
-84    	 001A	 48407FFF				x0 = a0
-85    	 001B	 84040000				y0 = xmem[_OUTPUT_GAIN6]
-86    	 001C	 00002400				a0 = x0 * y0
-87    									
-88    	 001D	 88D40001				ymem[i1] = a0
-89    	 001E	 81150010				i1 = i1 + _BLOCK_SIZE
-90    	 001F	 88D40001				ymem[i1] = a0		
-91    	 0020	 8D040000				b1 = xmem[_mode]
-92    	 0021	 8C7A0002				b0 = (2)
-93    	 0022	 00004F05				b1 - b0	
-94    	 0023	 86480027				if(b != 0) jmp>ifJmp # check if C channel, if yes enter value
-95    	 0024	 81150010					i1 = i1 + _BLOCK_SIZE
-96    	 0025	 88D40001					ymem[i1] = a0
-97    	 0026	 91150010					i1 = i1 - _BLOCK_SIZE
-98    	 0027				%ifJmp:
-99    	 0027	 91150010	  			i1 = i1 - _BLOCK_SIZE	
-100   	 0028	 02097FFF	  			i1 += 1
-101   	 0029				%ifOM3:
-102   	 0029	 02087FFF				i0 += 1
-103   	 002A	 020D7FFF	%loop: i5 += 1
-104   	 002B	 88040000		a0 = xmem[_mode]
-105   	 002C	 00004E80		a0&a0
-106   	 002D	 8408004F		if (a == 0) jmp>end
-107   	 002E				firstCall:
-108   	 002E	 B04A0000			i0 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
-109   	 002F	 B14A0000			i1 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
-110   	 0030	 B84A0000			i4 = (_tremoloL)
-111   	 0031	 80880050			call(_processBlock)
-112   	 0032	 B04A0001			i0 = (1)
-113   	 0033	 00007FFF			nop
-114   	 0034	 81050030			i1 = i0 + (_LS_CH * _BLOCK_SIZE)
-115   	 0035	 B04A0000			i0 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)
-116   	 0036	 80040000			x0 = xmem[_OUTPUT_GAIN2]
-117   	 0037	 8100003E			do(_BLOCK_SIZE),>secondCall
-118   	 0038	 84940000				y0 = ymem[i0]
-119   	 0039	 00007FFF				nop
-120   	 003A	 00002400				a0 = x0 * y0
-121   	 003B	 00007FFF				nop
-122   	 003C	 88D40001				ymem[i1] = a0
-123   	 003D	 02097FFF				i1 += 1
-124   	 003E	 02087FFF	%secondCall: i0 += 1
-125   	 003F				thirdCall:	
-126   	 003F	 B04A0000			i0 = (_tremoloBuffer + _RIGHT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
-127   	 0040	 B14A0000			i1 = (_tremoloBuffer + _RIGHT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer		i4 = ymem[_tremoloL]
-128   	 0041	 B84A0000			i4 = (_tremoloR)
-129   	 0042	 80880050			call(_processBlock)
-130   	 0043	 B04A0001			i0 = (1)
-131   	 0044	 00007FFF			nop
-132   	 0045	 81050040			i1 = i0 + (_RS_CH * _BLOCK_SIZE)
-133   	 0046	 B04A0000			i0 = (_tremoloBuffer + _RIGHT_CH * _BLOCK_SIZE)
-134   	 0047	 80040000			x0 = xmem[_OUTPUT_GAIN2]
-135   	 0048	 8100004F			do(_BLOCK_SIZE),>end
-136   	 0049	 84940000				y0 = ymem[i0]
-137   	 004A	 00002400				a0 = x0 * y0
-138   	 004B	 00007FFF				nop
-139   	 004C	 88D40001				ymem[i1] = a0
-140   	 004D	 02087FFF				i0 += 1
-141   	 004E	 02097FFF				i1 += 1
-142   	 004F				%end:
-143   	 004F	 81880000		ret
-144   	 0050				_processBlock:
-145   	 0050	 B0D40017		ymem[i7] = i0; i7 += 1
-146   	 0051	 B1D40017		ymem[i7] = i1; i7 += 1
-147   							
-148   	 0052	 85450004		i5 = i4 + _lfoPhase
-149   	 0053	 88940005		a0 = ymem[i5]
-150   	 0054	 81000076		do(_BLOCK_SIZE),>loop
-151   	 0055	 85450003			i5 = i4 + _waveform
-152   	 0056	 89940005			a1 = ymem[i5]
-153   	 0057	 80880000			call(_lfo)
-154   	 0058	 48407FFF			x0 = a0
-155   								
-156   	 0059	 85450002			i5 = i4 + _depth
-157   	 005A	 84940005			y0 = ymem[i5]
-158   	 005B	 00002400			a0 = x0 * y0
-159   								
-160   	 005C	 02177FFF			i7 -= 1
-161   	 005D	 B1940007			i1 = ymem[i7]
-162   	 005E	 02177FFF			i7 -= 1
-163   	 005F	 B0940007			i0 = ymem[i7]
-164   	 0060	 00007FFF			nop
-165   	 0061	 80940000			x0 = ymem[i0]
-166   	 0062	 8C7A7FFF			b0 = (0x7FFF)
-167   	 0063	 00004464			b0 = b0 - a0
-168   	 0064	 4C447FFF			y0 = b0
-169   	 0065	 00002400			a0 = x0 * y0
-170   								
-171   	 0066	 88D40001			ymem[i1] = a0
-172   								
-173   								
-174   	 0067	 02087FFF			i0 += 1
-175   	 0068	 02097FFF			i1 += 1
-176   								
-177   	 0069	 B0D40017			ymem[i7] = i0; i7 += 1
-178   	 006A	 B1D40017			ymem[i7] = i1; i7 += 1
-179   								
-180   	 006B	 85450001			i5 = i4 + _LFO_Frequency
-181   	 006C	 80940005			x0 = ymem[i5]
-182   								
-183   	 006D	 85450005			i5 = i4 + _inverseSampleRate
-184   	 006E	 84940005			y0 = ymem[i5]
-185   								
-186   	 006F	 00002400			a0 = x0 * y0
-187   								
-188   	 0070	 00004E00			a0 = a0 << 1
-189   								
-190   	 0071	 000044A5			b1 = b1 + a0
-191   								
-192   	 0072	 8C7A7FFF			b0 = (0x7FFF)
-193   								
-194   	 0073	 00004F05			b1 - b0
-195   	 0074	 86880076			if (b<0) jmp>loop
-196   	 0075	 000044C5				b1 = b1 - b0 
-197   	 0076				%loop:
-198   	 0076	 00007FFF		nop
-199   	 0077	 85450004		i5 = i4 + _lfoPhase
-200   	 0078	 8DD40005		ymem[i5] = b1	
-201   	 0079	 02177FFF		i7 -= 1
-202   	 007A	 02177FFF		i7 -= 1
-203   	 007B	 81880000		ret
-204   							.endif
+52    	 0002	 8C440000		xmem[_mode] = b0
+53    							
+54    	 0003	 81880000		ret
+55    	 0004				_gainProcessing:
+56    							# void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE], __memY DSPfract pOut[][BLOCK_SIZE]);
+57    							# i0 = pIn
+58    							# i1 = pOut
+59    	 0004	 B94A0000		i5 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
+60    	 0005	 8100002A		do(_BLOCK_SIZE),>loop
+61    	 0006	 80940000			x0 = ymem[i0] # get L values
+62    	 0007	 84040000			y0 = xmem[_input_gain] # get Input Gain
+63    	 0008	 00002404			b0 = x0 * y0	# left_channel * input_gain
+64    	 0009	 8CD40005			ymem[i5] = b0	# value to Ls tremoloBuffer
+65    	 000A	 85550010			i5 = i5 + _BLOCK_SIZE	# go to Rs channel
+66    								
+67    	 000B	 80050010			i0 = i0 + _BLOCK_SIZE # go to R channel
+68    	 000C	 00007FFF			nop
+69    	 000D	 80940000			x0 = ymem[i0]	# get R values
+70    	 000E	 90050010			i0 = i0 - _BLOCK_SIZE
+71    	 000F	 00002405			b1 = x0 * y0 # right channel * input_gain
+72    	 0010	 8DD40005			ymem[i5] = b1	#value to Rs tremoloBuffer
+73    	 0011	 95550010			i5 = i5 - _BLOCK_SIZE
+74    								
+75    	 0012	 88040000			a0 = xmem[_mode]	
+76    	 0013	 894A0001			uhalfword(a1) = (1)
+77    	 0014	 00004F08			a0 - a1
+78    	 0015	 84080029			if (a == 0) jmp>ifOM3
+79    									# if yes, sum*headroom_gain -> L & R output
+80    	 0016	 0000440C				b0 = b0 + b1
+81    									
+82    	 0017	 4C407FFF				x0 = b0
+83    	 0018	 84040000				y0 = xmem[_headroom_gain]
+84    	 0019	 00002400				a0 = x0 * y0
+85    									
+86    	 001A	 48407FFF				x0 = a0
+87    	 001B	 84040000				y0 = xmem[_OUTPUT_GAIN6]
+88    	 001C	 00002400				a0 = x0 * y0
+89    									
+90    	 001D	 88D40001				ymem[i1] = a0
+91    	 001E	 81150010				i1 = i1 + _BLOCK_SIZE
+92    	 001F	 88D40001				ymem[i1] = a0		
+93    	 0020	 8D040000				b1 = xmem[_mode]
+94    	 0021	 8C7A0002				b0 = (2)
+95    	 0022	 00004F05				b1 - b0	
+96    	 0023	 86480027				if(b != 0) jmp>ifJmp # check if C channel, if yes enter value
+97    	 0024	 81150010					i1 = i1 + _BLOCK_SIZE
+98    	 0025	 88D40001					ymem[i1] = a0
+99    	 0026	 91150010					i1 = i1 - _BLOCK_SIZE
+100   	 0027				%ifJmp:
+101   	 0027	 91150010	  			i1 = i1 - _BLOCK_SIZE	
+102   	 0028	 02097FFF	  			i1 += 1
+103   	 0029				%ifOM3:
+104   	 0029	 02087FFF				i0 += 1
+105   	 002A	 020D7FFF	%loop: i5 += 1
+106   	 002B	 88040000		a0 = xmem[_mode]
+107   	 002C	 00004E80		a0&a0
+108   	 002D	 84080053		if (a == 0) jmp>end
+109   	 002E				firstCall:
+110   	 002E	 B04A0000			i0 = (_tremoloL)
+111   	 002F	 80880054			call(_init)
+112   	 0030	 B04A0000			i0 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
+113   	 0031	 B14A0000			i1 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
+114   	 0032	 B84A0000			i4 = (_tremoloL)
+115   	 0033	 80880064			call(_processBlock)
+116   	 0034	 B04A0001			i0 = (1)
+117   	 0035	 00007FFF			nop
+118   	 0036	 81050030			i1 = i0 + (_LS_CH * _BLOCK_SIZE)
+119   	 0037	 B04A0000			i0 = (_tremoloBuffer + _LEFT_CH * _BLOCK_SIZE)
+120   	 0038	 80040000			x0 = xmem[_OUTPUT_GAIN2]
+121   	 0039	 81000040			do(_BLOCK_SIZE),>secondCall
+122   	 003A	 84940000				y0 = ymem[i0]
+123   	 003B	 00007FFF				nop
+124   	 003C	 00002400				a0 = x0 * y0
+125   	 003D	 00007FFF				nop
+126   	 003E	 88D40001				ymem[i1] = a0
+127   	 003F	 02097FFF				i1 += 1
+128   	 0040	 02087FFF	%secondCall: i0 += 1
+129   	 0041				thirdCall:	
+130   	 0041	 B04A0000			i0 = (_tremoloR)
+131   	 0042	 80880054			call(_init)
+132   	 0043	 B04A0000			i0 = (_tremoloBuffer + _RIGHT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer
+133   	 0044	 B14A0000			i1 = (_tremoloBuffer + _RIGHT_CH * _BLOCK_SIZE)	# pointer on Tremolo buffer		i4 = ymem[_tremoloL]
+134   	 0045	 B84A0000			i4 = (_tremoloR)
+135   	 0046	 80880064			call(_processBlock)
+136   	 0047	 B04A0001			i0 = (1)
+137   	 0048	 00007FFF			nop
+138   	 0049	 81050040			i1 = i0 + (_RS_CH * _BLOCK_SIZE)
+139   	 004A	 B04A0000			i0 = (_tremoloBuffer + _RIGHT_CH * _BLOCK_SIZE)
+140   	 004B	 80040000			x0 = xmem[_OUTPUT_GAIN2]
+141   	 004C	 81000053			do(_BLOCK_SIZE),>end
+142   	 004D	 84940000				y0 = ymem[i0]
+143   	 004E	 00002400				a0 = x0 * y0
+144   	 004F	 00007FFF				nop
+145   	 0050	 88D40001				ymem[i1] = a0
+146   	 0051	 02087FFF				i0 += 1
+147   	 0052	 02097FFF				i1 += 1
+148   	 0053				%end:
+149   	 0053	 81880000		ret
+150   	 0054				_init:
+151   							#__memY tremolo_struct_t * data
+152   							# i0 = data
+153   	 0054	 81050001		i1 = i0 + _LFO_Frequency
+154   	 0055	 887A7FFF		a0 = (0x7fff)
+155   	 0056	 00007FFF		nop
+156   	 0057	 88D40001		ymem[i1] = a0
+157   	 0058	 81050002		i1 = i0 + _depth
+158   	 0059	 88D40001		ymem[i1] = a0
+159   	 005A	 81050003		i1 = i0 + _waveform
+160   	 005B	 884A0001		uhalfword(a0) = (0x1)
+161   	 005C	 88D40001		ymem[i1] = a0
+162   	 005D	 81050004		i1 = i0 + _lfoPhase 
+163   	 005E	 887A0000		a0 = (0x0000)
+164   	 005F	 88D40001		ymem[i1] = a0
+165   	 0060	 884AAEC3		uhalfword(a0) = (0xaec3)
+166   	 0061	 81050005		i1 = i0 + _inverseSampleRate
+167   	 0062	 88D40001		ymem[i1] = a0
+168   	 0063	 81880000		ret	
+169   	 0064				_processBlock:
+170   	 0064	 B0D40017		ymem[i7] = i0; i7 += 1
+171   	 0065	 B1D40017		ymem[i7] = i1; i7 += 1
+172   							
+173   	 0066	 85450004		i5 = i4 + _lfoPhase
+174   	 0067	 88940005		a0 = ymem[i5]
+175   	 0068	 8100008A		do(_BLOCK_SIZE),>loop
+176   	 0069	 85450003			i5 = i4 + _waveform
+177   	 006A	 89940005			a1 = ymem[i5]
+178   	 006B	 80880000			call(_lfo)
+179   	 006C	 48407FFF			x0 = a0
+180   								
+181   	 006D	 85450002			i5 = i4 + _depth
+182   	 006E	 84940005			y0 = ymem[i5]
+183   	 006F	 00002400			a0 = x0 * y0
+184   								
+185   	 0070	 02177FFF			i7 -= 1
+186   	 0071	 B1940007			i1 = ymem[i7]
+187   	 0072	 02177FFF			i7 -= 1
+188   	 0073	 B0940007			i0 = ymem[i7]
+189   	 0074	 00007FFF			nop
+190   	 0075	 80940000			x0 = ymem[i0]
+191   	 0076	 8C7A7FFF			b0 = (0x7FFF)
+192   	 0077	 00004464			b0 = b0 - a0
+193   	 0078	 4C447FFF			y0 = b0
+194   	 0079	 00002400			a0 = x0 * y0
+195   								
+196   	 007A	 88D40001			ymem[i1] = a0
+197   								
+198   								
+199   	 007B	 02087FFF			i0 += 1
+200   	 007C	 02097FFF			i1 += 1
+201   								
+202   	 007D	 B0D40017			ymem[i7] = i0; i7 += 1
+203   	 007E	 B1D40017			ymem[i7] = i1; i7 += 1
+204   								
+205   	 007F	 85450001			i5 = i4 + _LFO_Frequency
+206   	 0080	 80940005			x0 = ymem[i5]
+207   								
+208   	 0081	 85450005			i5 = i4 + _inverseSampleRate
+209   	 0082	 84940005			y0 = ymem[i5]
+210   								
+211   	 0083	 00002400			a0 = x0 * y0
+212   								
+213   	 0084	 00004E00			a0 = a0 << 1
+214   								
+215   	 0085	 000044A5			b1 = b1 + a0
+216   								
+217   	 0086	 8C7A7FFF			b0 = (0x7FFF)
+218   								
+219   	 0087	 00004F05			b1 - b0
+220   	 0088	 8688008A			if (b<0) jmp>loop
+221   	 0089	 000044C5				b1 = b1 - b0 
+222   	 008A				%loop:
+223   	 008A	 00007FFF		nop
+224   	 008B	 85450004		i5 = i4 + _lfoPhase
+225   	 008C	 8DD40005		ymem[i5] = b1	
+226   	 008D	 02177FFF		i7 -= 1
+227   	 008E	 02177FFF		i7 -= 1
+228   	 008F	 81880000		ret
+229   							.endif
 				 SYMBOL TABLE 
 
     Name                                                                                    Type                  Value 
@@ -247,22 +272,23 @@ __CASM_VER__                                                                    
 _depth                                                                          					 Number				          2 (2H)
 _gainProcessing                                                                 			  Public Relocatable       gainProc_GEN_0000:0004H
 _headroom_gain                                                                  					 External   
+_init                                                                           			         Relocatable         gainProc_GEN_0000:0054H
 _initialize                                                                     			  Public Relocatable       gainProc_GEN_0000:0000H
 _input_gain                                                                     					 External   
 _inverseSampleRate                                                              					 Number				          5 (5H)
 _lfo                                                                            					 External   
 _lfoPhase                                                                       					 Number				          4 (4H)
 _mode                                                                           					 External   
-_processBlock                                                                   			  Public Relocatable       gainProc_GEN_0000:0050H
+_processBlock                                                                   			  Public Relocatable       gainProc_GEN_0000:0064H
 _tremoloBuffer                                                                  					 External   
 _tremoloL                                                                       					 External   
 _tremoloR                                                                       					 External   
 _waveform                                                                       					 Number				          3 (3H)
 firstCall                                                                       			  Unused Relocatable        gainProc_GEN_0000:002EH
-thirdCall                                                                       			  Unused Relocatable        gainProc_GEN_0000:003FH
+thirdCall                                                                       			  Unused Relocatable        gainProc_GEN_0000:0041H
 
 	       SEGMENTS:
 
 Size			  Name										 Class
 0000H	 __INIT                                  			 CODE                                    
-007CH	 gainProc_GEN_0000                       			 CODE_OVLY                               
+0090H	 gainProc_GEN_0000                       			 CODE_OVLY                               

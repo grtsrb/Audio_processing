@@ -6,6 +6,8 @@ DSPfract headroom_gain = FRACT_NUM(0);
 DSPfract OUTPUT_GAIN6 = (FRACT_NUM(0.50118));
 DSPfract OUTPUT_GAIN2 = (FRACT_NUM(0.794328));
 DSPint mode;
+__memY tremolo_struct_t tremoloL;
+__memY tremolo_struct_t tremoloR;
 
 #ifdef GAINPROC_ASM
 extern void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
@@ -21,7 +23,6 @@ void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mo
 #ifdef GAINPROC_ASM
 extern void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE], __memY DSPfract pOut[][BLOCK_SIZE]);
 #else
-
 void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE], __memY DSPfract pOut[][BLOCK_SIZE])
 {
 	__memY DSPfract* p_in_left = *(pIn + LEFT_CH);
@@ -38,9 +39,8 @@ void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE], __memY DSPfract pOut[][BL
 	DSPfract sum;
 	DSPint i;
 
- //init(tremolo_ptr);
-
-
+	init(&tremoloL);
+	init(&tremoloR);
 
 	for (i = 0; i < BLOCK_SIZE; i++)
 	{	
