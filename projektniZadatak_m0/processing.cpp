@@ -23,9 +23,12 @@ void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE], double 
 	double sum;
 	double pTemp[INPUT_NUM_CHANNELS][BLOCK_SIZE];
 
-	tremolo_struct_t tremolo;
-	tremolo_struct_t*  tremolo_ptr = &tremolo;
-	init(tremolo_ptr);
+	tremolo_struct_t tremoloL;
+	tremolo_struct_t tremoloR;
+
+	init(&tremoloL);
+	init(&tremoloR);
+
 
 
 	for (int i = 0; i < BLOCK_SIZE; i++)
@@ -61,10 +64,9 @@ void gainProcessing(double pIn[][BLOCK_SIZE], double pOut[][BLOCK_SIZE], double 
 	if (mode != OM2_0_0)
 	{
 
-		processBlock(pTemp[LEFT_CH], pTemp[LEFT_CH], tremolo_ptr, BLOCK_SIZE);
+		processBlock(pTemp[LEFT_CH], pTemp[LEFT_CH], &tremoloL, BLOCK_SIZE);
 		// Maybe not needed.
-		init(tremolo_ptr);
-		processBlock(pTemp[RIGHT_CH], pTemp[RIGHT_CH], tremolo_ptr, BLOCK_SIZE);
+		processBlock(pTemp[RIGHT_CH], pTemp[RIGHT_CH], &tremoloR, BLOCK_SIZE);
 
 		for (int i = 0; i < BLOCK_SIZE; i++)
 		{

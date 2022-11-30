@@ -7,7 +7,6 @@ DSPfract OUTPUT_GAIN6 = (FRACT_NUM(0.50118));
 DSPfract OUTPUT_GAIN2 = (FRACT_NUM(0.794328));
 DSPint mode;
 
-
 #ifdef GAINPROC_ASM
 extern void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
 #else

@@ -1,0 +1,21 @@
+#ifndef PROCESSING_H
+#define PROCESSING_H
+
+#include <math.h>
+#include "common.h"
+#include "tremolo.h"
+
+DSPfract input_gain = FRACT_NUM(0);
+DSPfract headroom_gain = FRACT_NUM(0);
+DSPfract OUTPUT_GAIN6 = (FRACT_NUM(0.50118));
+DSPfract OUTPUT_GAIN2 = (FRACT_NUM(0.794328));
+DSPint mode;
+
+
+
+void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
+void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE],__memY DSPfract pOut[][BLOCK_SIZE]);
+
+
+
+#endif // !_PROCESSING_H_

@@ -1,0 +1,35 @@
+_TREMOLO_ASM
+	.if defined (_TREMOLO_ASM)
+_BLOCK_SIZE .equ 16
+_dataDepth .equ 2
+_waveForm .equ 3
+_lfoPhase .equ 4
+_inverseSampleRate .equ 5
+
+	#.public _init
+	.public _processBlock
+	.extern _lfo
+
+
+	.code_ovly
+	
+_processBlock:
+	# extern void processBlock(__memY DSPfract* input,__memY DSPfract* output,__memY tremolo_struct_t* data);
+	# i0 = input
+	# i1 = output
+	# i4 = data
+
+	
+	do(_BLOCK_SIZE),>loop
+	#i0 = (i4 + _lfoPhase)
+	#i1 = (i4 + _waveForm)
+	#call(_lfo)
+	#x0 = a0
+	
+	
+	
+		
+%loop:
+	ret
+.endif
+	

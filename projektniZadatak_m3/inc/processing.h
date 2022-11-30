@@ -7,6 +7,8 @@
 
 
 
+
+
 void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func);
 void gainProcessing(__memY DSPfract pIn[][BLOCK_SIZE],__memY DSPfract pOut[][BLOCK_SIZE]);
 

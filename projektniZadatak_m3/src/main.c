@@ -8,6 +8,7 @@ __memY DSPfract sampleBuffer[MAX_NUM_CHANNEL][BLOCK_SIZE];
 __memY tremolo_struct_t tremoloL;
 __memY tremolo_struct_t tremoloR;
 
+
 int main(int argc, char *argv[])
  {
     WAVREAD_HANDLE *wav_in;
@@ -20,18 +21,17 @@ int main(int argc, char *argv[])
     DSPint outChannels;
     DSPint bitsPerSample;
     DSPint sampleRate;
+    DSPfract input_gain;
+    DSPfract headroom_gain;
+    DSPint mode;
     DSPint iNumSamples;
-	DSPfract input_gain;
-	DSPfract headroom_gain;
-	DSPint mode;
 	DSPint OUTPUT_NUM_CHANNELS;
     DSPint i;
     DSPint j;
+	mode = OM0_2_0;
 	input_gain = MINUS_6DB;
 	headroom_gain = MINUS_3DB;
-	mode = OM2_0_0;
 	OUTPUT_NUM_CHANNELS = 2;
-
 	// Init channel buffers
 	for(i=0; i<MAX_NUM_CHANNEL; i++)
 		for(j=0; j<BLOCK_SIZE; j++)
@@ -68,6 +68,21 @@ int main(int argc, char *argv[])
     }
 	//-------------------------------------------------
 	initialize(input_gain, headroom_gain, mode);
+	switch(mode)
+	{
+	case OM2_0_0:
+		OUTPUT_NUM_CHANNELS = 2;
+		break;
+	case OM0_2_0:
+		OUTPUT_NUM_CHANNELS = 2;
+		break;
+	case OM3_2_0:
+		OUTPUT_NUM_CHANNELS = 5;
+		break;
+	default:
+		OUTPUT_NUM_CHANNELS = 2;
+		break;
+	}
 	// Processing loop
 	//-------------------------------------------------
     {
@@ -89,6 +104,8 @@ int main(int argc, char *argv[])
 			}
 
 			// pozvati processing funkciju ovde
+			init(&tremoloL);
+			init(&tremoloR);
 			gainProcessing(sampleBuffer, sampleBuffer);
 
 			for(j=0; j<BLOCK_SIZE; j++)
@@ -96,7 +113,7 @@ int main(int argc, char *argv[])
 				for(k=0; k<outChannels; k++)
 				{
 					int channel = 0;
-					switch (mode)
+					switch(mode)
 					{
 					case OM2_0_0:
 						if (k == 0) channel = LEFT_CH;
@@ -112,7 +129,10 @@ int main(int argc, char *argv[])
 						if (k == 2) channel = CENTER_CH;
 						if (k == 3) channel = LEFTS_CH;
 						if (k == 4) channel = RIGHTS_CH;
+						break;
 					default:
+						if (k == 0) channel = LEFT_CH;
+						if (k == 1) channel = RIGHT_CH;
 						break;
 					}
 					sample = bitsr(sampleBuffer[channel][j]);

@@ -4,6 +4,8 @@
 #include <math.h>
 #include "common.h"
 
+
+
 typedef enum
 
 {
@@ -24,6 +26,7 @@ typedef struct {
 
 	DSPfract inverseSampleRate;
 } tremolo_struct_t;
+
 
 void init(tremolo_struct_t* data);
 void processBlock(DSPfract* input, DSPfract* output, tremolo_struct_t* data);

@@ -19,8 +19,9 @@ static DSPfract tremoloBuffer[TREMOLO_NUM_CHANNELS][BLOCK_SIZE];
 DSPfract input_gain = fract(0);
 DSPfract headroom_gain = fract(0);
 DSPint mode;
-tremolo_struct_t tremolo;
-tremolo_struct_t* tremolo_ptr = &tremolo;
+
+tremolo_struct_t tremoloL;
+tremolo_struct_t tremoloR;
 
 void initialize(DSPfract input_gain_func, DSPfract headroom_gain_func, DSPint mode_func)
 {
@@ -34,8 +35,6 @@ void gainProcessing(DSPfract pIn[][BLOCK_SIZE], DSPfract pOut[][BLOCK_SIZE])
 {
 	DSPfract sum;
 
-	init(tremolo_ptr);
-
 	DSPfract* p_in_left = *(pIn + LEFT_CH);
 	DSPfract* p_in_right = *(pIn + RIGHT_CH);
 
@@ -47,6 +46,9 @@ void gainProcessing(DSPfract pIn[][BLOCK_SIZE], DSPfract pOut[][BLOCK_SIZE])
 	DSPfract* p_out_center = *(pOut + CENTER_CH);
 	DSPfract* p_out_LS = *(pOut + LEFTS_CH);
 	DSPfract* p_out_RS = *(pOut + RIGHTS_CH);
+
+	init(&tremoloL);
+	init(&tremoloR);
 
 	for (DSPint i = 0; i < BLOCK_SIZE; i++)
 	{	
@@ -90,9 +92,8 @@ void gainProcessing(DSPfract pIn[][BLOCK_SIZE], DSPfract pOut[][BLOCK_SIZE])
 		p_in_tempL = *(tremoloBuffer + LEFT_CH);
 		p_in_tempR = *(tremoloBuffer + RIGHT_CH);
 
-		processBlock(p_in_tempL, p_in_tempL, tremolo_ptr);
-		init(tremolo_ptr);
-		processBlock(p_in_tempR, p_in_tempR, tremolo_ptr);
+		processBlock(p_in_tempL, p_in_tempL, &tremoloL);
+		processBlock(p_in_tempR, p_in_tempR, &tremoloR);
 
 
 		for (int i = 0; i < BLOCK_SIZE; i++)

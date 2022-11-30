@@ -2,16 +2,18 @@
 <settings>
 <clideViews>
 <clideView viewId="clide.debug.ui.memoryView">
-<memoryTab columnCount="8" core="DSP_A" memoryZone="Y" tabAddress="0"/>
+<memoryTab columnCount="8" core="DSP_A" memoryZone="X" tabAddress="82"/>
 </clideView>
 <clideView viewId="clide.debug.ui.registersView">
 <registerView regViewCoreName="DSP_A">
-<regViewMementoCore scrollPercent="0.0" selectedItem="/DSP_A/Data registers/x0">
+<regViewMementoCore scrollPercent="0.0" selectedItem="/DSP_A/Accum registers/a0">
 <layoutType horizontal="0" register_details="1"/>
 <expandedPath item_0="DSP_A"/>
 <expandedPath item_0="DSP_A" item_1="Data registers"/>
 <expandedPath item_0="DSP_A" item_1="Accum registers"/>
 <expandedPath item_0="DSP_A" item_1="Index registers"/>
+<expandedPath item_0="DSP_A" item_1="Modulo registers"/>
+<expandedPath item_0="DSP_A" item_1="Control registers"/>
 </regViewMementoCore>
 </registerView>
 </clideView>
@@ -19,14 +21,12 @@
 <perspective id="CLIDE.DebugPerspective"/>
 <workbench_editors>
 <editor file_path="/projektniZadatak_m3/.suldproj"/>
-<editor file_path="/projektniZadatak_m3/inc/common.h"/>
-<editor file_path="/projektniZadatak_m3/inc/processing.h"/>
-<editor file_path="/projektniZadatak_m3/src/processing.c"/>
 <editor file_path="/projektniZadatak_m3/src/gainProc.a"/>
-<editor file_path="/projektniZadatak_m3/inc/tremolo.h"/>
+<editor file_path="/projektniZadatak_m3/inc/common.h"/>
 <editor file_path="/projektniZadatak_m3/src/tremolo.c"/>
-<editor file_path="/projektniZadatak_m3/crystal32.groovy"/>
 <editor file_path="/projektniZadatak_m3/src/main.c"/>
+<editor file_path="/projektniZadatak_m3/src/processing.c"/>
+<editor file_path="/projektniZadatak_m3/inc/processing.h"/>
 </workbench_editors>
 <views/>
 <watchExpressions/>
